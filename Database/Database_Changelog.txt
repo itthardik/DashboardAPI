@@ -1,0 +1,159 @@
+﻿-- Migration ID: 1
+-- Script Name: 2024-09-11__TKT-1__Create__UsersTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: Creates the `Users` table with essential fields.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-2
+-- Script Name: 2024-09-11__TKT-2__Create__OrdersTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `Orders` table with columns for order ID, user ID, total price, status, created at, and updated at.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-3
+-- Script Name: 2024-09-11__TKT-3__Create__CategoryTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `Category` table with columns for ID and category name.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-4
+-- Script Name: 2024-09-11__TKT-4__Create__SupplierTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `Supplier` table with columns for ID, name, contact info, and address.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-5
+-- Script Name: 2024-09-11__TKT-5__Create__ProductTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `Product` table with columns for ID, name, cost price, selling price, shipping cost, discount, net profit, threshold value, category ID, current stock, supplier ID, created at, and updated at.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-6
+-- Script Name: 2024-09-11__TKT-6__Create__OrderItemTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `OrderItem` table with columns for ID, product ID, order ID, quantity, price, status, discount, and created at.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-7
+-- Script Name: 2024-09-11__TKT-7__Create__CustomerSearchTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script creates the `CustomerSearch` table with columns for ID, search term, count, user ID, and searched at.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-8
+-- Script Name: 2024-09-11__TKT-8__Seed__Categories.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script seeds predefined categories into the `Category` table.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-9
+-- Script Name: 2024-09-11__TKT-9__Seed__Suppliers.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script seeds the `Supplier` table with 10 entries.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-10
+-- Script Name: 2024-09-11__TKT-10__Seed__Products.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-11
+-- Description: This script seeds the Product table with 82 entries.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-11
+-- Script Name: 2024-09-12__TKT-11__Seed__Orders.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-12
+-- Description: This script seeds the ORDER table with at least 100 entries. Each order has user_id set to 3, with varying total_price and random status from the list ('Pending', 'Completed', 'Cancelled').
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-12
+-- Script Name: 2024-09-12__TKT-12__Seed__Order_Items.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-12
+-- Description: This script seeds the ORDER_ITEM table with items for each of the 100+ orders. Each order can have multiple items, with quantity, price, status, and default discount (0.00). The status is randomly chosen from ('Pending', 'Shipped', 'Delivered', 'Returned').
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-13
+-- Script Name: 2024-09-12__TKT-13__Script__OrderItemPriceAndDiscount.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-12
+-- Description: This script updates the `OrderItem` table by recalculating the price column based on product price and quantity,
+--              and updates the discount column with a random value between 10% and 15% of the price.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-14
+-- Script Name: 2024-09-12__TKT-14__Seed__CustomerSearch.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-12
+-- Description: This script seeds the `CustomerSearch` table with 100 entries for user_id 3.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-15
+-- Script Name: 2024-09-12__TKT-15__Seed__OrderTotalPrice.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-12
+-- Description: This script seeds the `OrderItem` table with data and calculates the `totalPrice` for each order in the `Orders` table.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-16
+-- Script Name: 2024-09-14__TKT-16__Create__GetTop10RevenueAndProfit.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-14
+-- Description: This script creates the `GetTop10RevenueAndProfit` stored procedure that retrieves the top 10 product categories based on revenue and profit within a specified number of days.
+-- Status: Pending
+
+--------------------------------------------------------------------------------
+
+
+
+----------------use this template and place migration changes above-------------
+
+-- Migration ID: [ID]
+-- Script Name: [YYYY-MM-DD__TKT-#__Action__Description.sql]
+-- Author: [Name]
+-- Date: [YYYY-MM-DD]
+-- Description: [Brief Description]
+-- Status: [Applied/Pending]
+
+--------------------------------------------------------------------------------
+
+
