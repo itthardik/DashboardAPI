@@ -65,7 +65,7 @@ namespace Dashboard.Controllers
 
                 // Check if the hashed passwords match
                 if (hashedInputPassword != hashedPassword)
-                    throw new CustomException("Invalid Password");
+                    throw new CustomException("Invalid Password") { StatusCode = 401};
 
                 // Define claims (ID, username, role) for the user
                 var claims = new[]
@@ -148,6 +148,7 @@ namespace Dashboard.Controllers
         /// Sign up
         /// </summary>
         /// <param name="requestUser"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
         [HttpPost("signup")]
         public JsonResult SignUp([FromBody] RequestUser requestUser, [FromQuery] string role)
@@ -159,7 +160,7 @@ namespace Dashboard.Controllers
                 {
                     Username = requestUser.Username!,
                     Password = hashedInputPassword,
-                    Email = requestUser + "@gmail.com",
+                    Email = requestUser.Username + "@hm.com",
                     Role = role
                 });
                 _userRepository.Save();

@@ -25,7 +25,7 @@ namespace Dashboard.Repository
             var result = _context.Users.Where(lg => lg.Username == username).ToList();
 
             if (result.Count == 0)
-                throw new CustomException("Invalid Username");
+                throw new CustomException("Invalid Username") { StatusCode = 404};
 
             return result.First();
         }

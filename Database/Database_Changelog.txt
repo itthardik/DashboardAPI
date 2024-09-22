@@ -139,7 +139,36 @@
 -- Author: Hardik Sharma
 -- Date: 2024-09-14
 -- Description: This script creates the `GetTop10RevenueAndProfit` stored procedure that retrieves the top 10 product categories based on revenue and profit within a specified number of days.
--- Status: Pending
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: 2024-09-17
+-- Script Name: 2024-09-17__TKT-17__Update__AddAvgDailyUsageAndRenameThresholdValue.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-17
+-- Description: This script adds a new column `averageDailyUsage` and renames the existing `thresholdValue` column to `reorderPoint` in the `Inventory` table.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: 2024-09-17__TKT-18__UpdateProductAverageDailyUsageAndReorderPoint.sql
+-- Script Name: 2024-09-17__TKT-18__UpdateProductAverageDailyUsageAndReorderPoint.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-17
+-- Description: This script updates the `averageDailyUsage` column in the `Product` table based on the count of `OrderItem` entries from the past 90 days.
+--              It also updates the `reorderPoint` based on the `averageDailyUsage` with an added safety stock of 10.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: 2024-09-21__TKT-19__CreateAlertTable.sql
+-- Script Name: 2024-09-21__TKT-19__CreateAlertTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-21
+-- Description: This script creates the `Alert` table with columns for ID, product ID, alert level, notification timestamp, and status.
+--              The `status` column has two possible values: 'Pending' and 'Resolved'.
+-- Status: Applied
 
 --------------------------------------------------------------------------------
 
