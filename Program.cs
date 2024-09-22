@@ -11,6 +11,7 @@ using System.Text;
 using Dashboard.Services;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace Dashboard
 {
@@ -35,6 +36,9 @@ namespace Dashboard
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IRevenueRepository, RevenueRepository>();
+            builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IAlertRepository, AlertRepository>();
 
             builder.Services.AddTransient<BrokerService>();
 
@@ -105,6 +109,9 @@ namespace Dashboard
                     policy.RequireRole("admin"))
                 .AddPolicy("RevenueAccessPolicy", policy =>
                     policy.RequireRole("revenue","admin")
+                    )
+                .AddPolicy("InventoryAccessPolicy", policy =>
+                    policy.RequireRole("inventory", "admin")
                     );
 
 

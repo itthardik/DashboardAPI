@@ -14,7 +14,7 @@ AS
 BEGIN
     
     DECLARE @StartDate DATETIME;
-    SET @StartDate = DATEADD(DAY, -@DaysBack, GETDATE());
+    SET @StartDate = DATEADD(DAY, -@DaysBack, CAST(GETDATE() AS DATE));
 
     SELECT TOP 10
         c.categoryName AS CategoryName, 

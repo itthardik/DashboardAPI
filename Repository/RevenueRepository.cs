@@ -25,15 +25,11 @@ namespace Dashboard.Repository
         /// <returns></returns>
         public JsonResult GetProductCostById(int id)
         {
-            try
-            {
-                var product = _context.Products.Find(id) ?? throw new CustomException("No Product with this ID", 404);
+            var product = _context.Products.Where(p => p.Id == id);
+            if (product.IsNullOrEmpty())
+                throw new CustomException("No Product with this ID", 404);
 
-                return new JsonResult(new {data = product }) { StatusCode = 200};
-            }
-            catch (CustomException ex) {
-                return new JsonResult(ex.ErrorMessage){ StatusCode = ex.StatusCode };
-            }
+            return new JsonResult(new {data = product }) { StatusCode = 200};   
         }
 
         /// <summary>
@@ -42,18 +38,11 @@ namespace Dashboard.Repository
         /// <param name="name"></param>
         /// <returns></returns>
         public JsonResult GetProductCostByName(string name) {
-            try
-            {
-                var product = _context.Products.Where(p => p.Name.Contains(name));
-                if(product.IsNullOrEmpty())
-                    throw new CustomException("No Product with this name",404);
+            var product = _context.Products.Where(p => p.Name.Contains(name));
+            if(product.IsNullOrEmpty())
+                throw new CustomException("No Product with this name",404);
 
-                return new JsonResult(new { data = product.First() }) { StatusCode = 200 };
-            }
-            catch (CustomException ex)
-            {
-                return new JsonResult(ex.ErrorMessage){ StatusCode = ex.StatusCode };
-            }
+            return new JsonResult(new { data = product.ToList() }) { StatusCode = 200 };
         }
 
         /// <summary>
