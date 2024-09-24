@@ -12,6 +12,7 @@ using Dashboard.Services;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
+using Hangfire;
 
 namespace Dashboard
 {
@@ -43,6 +44,9 @@ namespace Dashboard
             builder.Services.AddTransient<BrokerService>();
 
             builder.Services.AddControllers();
+
+            builder.Services.AddHangfire(x => x.UseSqlServerStorage(configuration["ConnectionStrings:ApiContext"]));
+            builder.Services.AddHangfireServer();
 
             builder.Services.AddSignalR();
             builder.Services.AddSingleton<MqttService>(serviceProvider =>
@@ -145,6 +149,28 @@ namespace Dashboard
 
 
             app.MapControllers();
+
+            app.UseHangfireDashboard();
+
+            RecurringJob.AddOrUpdate<BackgroundJobService>(
+                "midnight-restock-job",
+                service => service.RestockBasedOnNotification(),
+                Cron.Daily);
+            RecurringJob.AddOrUpdate<BackgroundJobService>(
+                "daily-usage-update-job",
+                service => service.UpdateAverageDailyUsageAndReorderPointForAllProducts(),
+                Cron.Daily);
+
+            app.MapPost("/start-job", async (IBackgroundJobClient backgroundJobClient) =>
+            {
+                string excelFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Orders.xlsx"); ; // Update this path
+
+                // Enqueue the job
+                backgroundJobClient.Enqueue<BackgroundJobService>(service =>
+                    service.ProcessExcelAndPlaceOrders(excelFilePath));
+
+                return Results.Ok("Job has been enqueued.");
+            });
 
             app.Run();
         }

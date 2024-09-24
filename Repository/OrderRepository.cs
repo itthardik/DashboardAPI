@@ -67,7 +67,7 @@ namespace Dashboard.Repository
                     Discount = orderDiscount * i.Quantity,
                     Status = "Pending"
                 };
-                newOrder.TotalPrice += item.Price;
+                newOrder.TotalPrice += item.Price - (decimal)item.Discount;
                 _context.OrderItems.Add(item);
                 _context.SaveChanges();
             }

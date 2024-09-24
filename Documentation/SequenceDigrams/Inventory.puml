@@ -1,0 +1,59 @@
+﻿@startuml
+actor User
+participant "Frontend" as FE
+participant "MQTT Client (FRONTEND)" as MqttF
+participant "Backend" as BE
+participant "MQTT Client (BACKEND)" as MqttB
+participant "MQTT Broker" as Broker
+
+== Initial Request ==
+User -> FE: Request Inventory Page
+
+FE -> BE: Get Inventory Data
+BE --> FE: 200 OK with Inventory Data
+
+FE -> BE: Get Notification Data
+BE --> FE: 200 OK with Notification Data
+
+FE --> User: Display Inventory Page and Notifications
+
+== Subscribe for Real-time Updates ==
+User -> FE: Request Real-time Updates
+FE -> MqttF: Subscribe to inventory/*
+
+MqttF -> Broker: Subscribe to inventory/*
+Broker --> MqttF: Acknowledge Subscription
+MqttF --> FE: Subscription Acknowledged
+
+FE --> User: Display "Real-time updates enabled"
+
+== Real-time Updates ==
+loop On Inventory Update
+    Broker -> MqttF: Send Inventory Update Message
+    MqttF -> FE: Update Inventory Data
+    FE --> User: Display Updated Inventory
+end
+
+loop On Alert Update
+    Broker -> MqttF: Send Alert Update Message
+    MqttF -> FE: Update Alert Data
+    FE --> User: Display New Alert
+end
+
+== Add Inventory ==
+User -> FE: Add Inventory
+
+alt Valid Inventory Data
+    FE -> BE: Send Add Inventory Request
+    BE -> MqttB: Publish Alert Change (with Alert Data)
+    MqttB -> Broker: Publish Alert Message
+    Broker --> MqttB: Acknowledge Publish
+
+    Broker -> MqttF: Broadcast Alert Message
+    MqttF -> FE: Receive Alert Data Change
+    FE --> User: Display Updated Alert
+else Invalid Inventory Data
+    FE --> User: Display Error Message
+end
+
+@enduml
