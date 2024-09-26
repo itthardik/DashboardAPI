@@ -4,6 +4,26 @@
         <name>Dashboard</name>
     </assembly>
     <members>
+        <member name="T:Dashboard.Controllers.AlertController">
+            <summary>
+            Alert Controller
+            </summary>
+            <param name="alertRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.AlertController.#ctor(Dashboard.Repository.Interfaces.IAlertRepository)">
+            <summary>
+            Alert Controller
+            </summary>
+            <param name="alertRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.AlertController.GetAlertsByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get alerts by pages
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="T:Dashboard.Controllers.AuthController">
             <summary>
             Auth controller
@@ -70,6 +90,52 @@
             <param name="stockRequire"></param>
             <returns></returns>
         </member>
+        <member name="T:Dashboard.Controllers.MqttController">
+            <summary>
+            Mqtt Controller
+            </summary>
+            <param name="mqttService"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.MqttController.#ctor(Dashboard.Services.MqttService)">
+            <summary>
+            Mqtt Controller
+            </summary>
+            <param name="mqttService"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.MqttController.Publish(System.String,System.String)">
+            <summary>
+            Publish New Message
+            </summary>
+            <param name="topic"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Controllers.MqttController.Subscribe(System.String)">
+            <summary>
+            Sub topic
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dashboard.Controllers.OrderController">
+            <summary>
+            Order Controller
+            </summary>
+            <param name="orderRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.OrderController.#ctor(Dashboard.Repository.Interfaces.IOrderRepository)">
+            <summary>
+            Order Controller
+            </summary>
+            <param name="orderRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.OrderController.PlaceOrder(System.Collections.Generic.List{Dashboard.Models.DTOs.Request.RequestOrderItem})">
+            <summary>
+            Place New Order
+            </summary>
+            <param name="products"></param>
+            <returns></returns>
+        </member>
         <member name="T:Dashboard.Controllers.RevenueController">
             <summary>
             Revenue Controller
@@ -104,6 +170,85 @@
             <param name="days"></param>
             <returns></returns>
         </member>
+        <member name="T:Dashboard.Controllers.SalesController">
+            <summary>
+            Sales Controller
+            </summary>
+            <param name="salesRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.SalesController.#ctor(Dashboard.Repository.Interfaces.ISalesRepository)">
+            <summary>
+            Sales Controller
+            </summary>
+            <param name="salesRepository"></param>
+        </member>
+        <member name="M:Dashboard.Controllers.SalesController.GetSalesStatsByCategoryBasedOnDays(System.String)">
+            <summary>
+            Get Sales by Category
+            </summary>
+            <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Controllers.SalesController.GetOverallSalesStatsBasedOnDays(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get Overall Sales
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <param name="day"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Controllers.SalesController.GetTopSellingProductsByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Products
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Controllers.SalesController.GetTopSellingCategoriesByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Categories
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Dashboard.DataContext.ApiContext.RevenueSPResponses">
+            <summary>
+            Revenue SP response
+            </summary>
+        </member>
+        <member name="P:Dashboard.DataContext.ApiContext.SalesByCategorySPResponses">
+            <summary>
+            Sales By Category SP Responses
+            </summary>
+        </member>
+        <member name="P:Dashboard.DataContext.ApiContext.TotalSalesSPResponses">
+            <summary>
+            Total Sales SP Responses
+            </summary>
+        </member>
+        <member name="P:Dashboard.DataContext.ApiContext.TopSellingProductsSPResponses">
+            <summary>
+            Top Selling Products SP Responses
+            </summary>
+        </member>
+        <member name="T:Dashboard.Models.DTOs.Request.RequestOrderItem">
+            <summary>
+            Request Order Item
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Request.RequestOrderItem.ProductId">
+            <summary>
+            product Id
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Request.RequestOrderItem.Quantity">
+            <summary>
+            quantity
+            </summary>
+        </member>
         <member name="T:Dashboard.Models.DTOs.Response.RevenueSPResponse">
             <summary>
             Response type of revenue
@@ -124,6 +269,11 @@
             Net Profit
             </summary>
         </member>
+        <member name="T:Dashboard.Models.DTOs.Response.SalesByCategorySPResponse">
+            <summary>
+            Sales by category sp response
+            </summary>
+        </member>
         <member name="P:Dashboard.Models.DTOs.Response.SalesByCategorySPResponse.CategoryId">
             <summary>
             Category id
@@ -139,16 +289,40 @@
             Total Sales
             </summary>
         </member>
-        <member name="T:Dashboard.Models.User">
+        <member name="T:Dashboard.Models.DTOs.Response.TopSellingProductsSPResponse">
             <summary>
-            Represents a user in the system.
+            Top Selling Products SP Response
             </summary>
         </member>
-        <member name="P:Dashboard.Models.User.Username">
+        <member name="P:Dashboard.Models.DTOs.Response.TopSellingProductsSPResponse.Id">
             <summary>
-            Gets or sets the username of the user.
+            id
             </summary>
-            <example>john_doe</example>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.TopSellingProductsSPResponse.Name">
+            <summary>
+            name
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.TopSellingProductsSPResponse.TotalSales">
+            <summary>
+            total sales
+            </summary>
+        </member>
+        <member name="T:Dashboard.Models.DTOs.Response.TotalSalesSPResponse">
+            <summary>
+            Total Sales SP Res
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.TotalSalesSPResponse.TotalQuantity">
+            <summary>
+            total quantity
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.TotalSalesSPResponse.CurrentDateTime">
+            <summary>
+            current timestamp
+            </summary>
         </member>
         <member name="T:Dashboard.Program">
             <summary>
@@ -161,6 +335,40 @@
             </summary>
             <param name="args"></param>
             <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:Dashboard.Repository.AlertRepository">
+            <summary>
+            Alert Repo
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Dashboard.Repository.AlertRepository.#ctor(Dashboard.DataContext.ApiContext)">
+            <summary>
+            Alert Repo
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Dashboard.Repository.AlertRepository.GetAllAlerts(System.Int32,System.Int32)">
+            <summary>
+            Get All Alerts
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+            <exception cref="T:Dashboard.Utility.CustomException"></exception>
+        </member>
+        <member name="T:Dashboard.Repository.Interfaces.IAlertRepository">
+            <summary>
+            Interface for Alert Respository
+            </summary>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.IAlertRepository.GetAllAlerts(System.Int32,System.Int32)">
+            <summary>
+            Get All Repos
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="T:Dashboard.Repository.Interfaces.IInventoryRepository">
             <summary>
@@ -183,6 +391,18 @@
             <param name="productId"></param>
             <param name="stockRequire"></param>
             <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dashboard.Repository.Interfaces.IOrderRepository">
+            <summary>
+            Interface for Order Respository
+            </summary>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.IOrderRepository.PlaceOrder(System.Collections.Generic.List{Dashboard.Models.DTOs.Request.RequestOrderItem})">
+            <summary>
+            Place new Order
+            </summary>
+            <param name="orderItems"></param>
             <returns></returns>
         </member>
         <member name="T:Dashboard.Repository.Interfaces.IRevenueRepository">
@@ -217,6 +437,43 @@
             Get Revenue Stats Based On Days
             </summary>
             <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dashboard.Repository.Interfaces.ISalesRepository">
+            <summary>
+            Interface for Sales Respository
+            </summary>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.ISalesRepository.GetSalesStatsByCategoryBasedOnDays(System.Int32)">
+            <summary>
+            Get Sales Stats By Category Based On Days
+            </summary>
+            <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.ISalesRepository.GetOverallSalesStatsBasedOnDays(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get Overall Sales Stats Based On Days
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <param name="day"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.ISalesRepository.GetTopSellingProductsByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Products By Pagination
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Repository.Interfaces.ISalesRepository.GetTopSellingCategoriesByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Categories By Pagination
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
             <returns></returns>
         </member>
         <member name="T:Dashboard.Repository.Interfaces.IUserRepository">
@@ -276,6 +533,28 @@
             <param name="token"></param>
             <returns></returns>
         </member>
+        <member name="T:Dashboard.Repository.OrderRepository">
+            <summary>
+            Order Repo
+            </summary>
+            <param name="context"></param>
+            <param name="mqttService"></param>
+        </member>
+        <member name="M:Dashboard.Repository.OrderRepository.#ctor(Dashboard.DataContext.ApiContext,Dashboard.Services.MqttService)">
+            <summary>
+            Order Repo
+            </summary>
+            <param name="context"></param>
+            <param name="mqttService"></param>
+        </member>
+        <member name="M:Dashboard.Repository.OrderRepository.PlaceOrder(System.Collections.Generic.List{Dashboard.Models.DTOs.Request.RequestOrderItem})">
+            <summary>
+            Place new Order
+            </summary>
+            <param name="orderItems"></param>
+            <returns></returns>
+            <exception cref="T:Dashboard.Utility.CustomException"></exception>
+        </member>
         <member name="T:Dashboard.Repository.RevenueRepository">
             <summary>
             Revenue Repo
@@ -317,6 +596,52 @@
             <param name="days"></param>
             <returns></returns>
         </member>
+        <member name="T:Dashboard.Repository.SalesRepository">
+            <summary>
+            Sales Repo
+            </summary>
+            <param name="apiContext"></param>
+        </member>
+        <member name="M:Dashboard.Repository.SalesRepository.#ctor(Dashboard.DataContext.ApiContext)">
+            <summary>
+            Sales Repo
+            </summary>
+            <param name="apiContext"></param>
+        </member>
+        <member name="M:Dashboard.Repository.SalesRepository.GetSalesStatsByCategoryBasedOnDays(System.Int32)">
+            <summary>
+            Get Sales Stats By Category Based On Days
+            </summary>
+            <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Repository.SalesRepository.GetOverallSalesStatsBasedOnDays(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get Overall Sales Stats Based On Days
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <param name="day"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Repository.SalesRepository.GetTopSellingProductsByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Products By Pagination
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+            <exception cref="T:Dashboard.Utility.CustomException"></exception>
+        </member>
+        <member name="M:Dashboard.Repository.SalesRepository.GetTopSellingCategoriesByPagination(System.Int32,System.Int32)">
+            <summary>
+            Get Top Selling Categories By Pagination
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+            <exception cref="T:Dashboard.Utility.CustomException"></exception>
+        </member>
         <member name="T:Dashboard.Repository.UserRepository">
             <summary>
             Repository for managing user data.
@@ -351,6 +676,146 @@
             Saves all changes made to the repository.
             </summary>
         </member>
+        <member name="T:Dashboard.Services.BackgroundJobService">
+            <summary>
+            Bg Service
+            </summary>
+            <param name="context"></param>
+            <param name="mqttService"></param>
+            <param name="orderRepository"></param>
+        </member>
+        <member name="M:Dashboard.Services.BackgroundJobService.#ctor(Dashboard.DataContext.ApiContext,Dashboard.Services.MqttService,Dashboard.Repository.Interfaces.IOrderRepository)">
+            <summary>
+            Bg Service
+            </summary>
+            <param name="context"></param>
+            <param name="mqttService"></param>
+            <param name="orderRepository"></param>
+        </member>
+        <member name="M:Dashboard.Services.BackgroundJobService.RestockBasedOnNotification">
+            <summary>
+            Restock Notification at Midnight
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Services.BackgroundJobService.UpdateAverageDailyUsageAndReorderPointForAllProducts">
+            <summary>
+            Update Avg Daily Usage and Reorder Point for all products
+            </summary>
+        </member>
+        <member name="M:Dashboard.Services.BackgroundJobService.ProcessExcelAndPlaceOrders(System.String)">
+            <summary>
+            Get Excel Data and send req of orders
+            </summary>
+            <param name="excelFilePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Services.BackgroundJobService.GetTotalOrderInLast60Sec">
+            <summary>
+            Get Total Orders in Last 1 min
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dashboard.Services.BrokerService">
+            <summary>
+            Broker Service
+            </summary>
+        </member>
+        <member name="M:Dashboard.Services.BrokerService.AddUser(System.String,System.String,System.String)">
+            <summary>
+            Add User to broker
+            </summary>
+            <param name="Username"></param>
+            <param name="Password"></param>
+            <param name="Role"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Dashboard.Services.BrokerService.LoginUser(System.String,System.String,System.String)">
+            <summary>
+            Login user to broker
+            </summary>
+            <param name="Username"></param>
+            <param name="Password"></param>
+            <param name="Role"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Dashboard.Services.BrokerService.LogoutUser(System.String)">
+            <summary>
+            Logout User to broker
+            </summary>
+            <param name="Username"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Dashboard.Services.BrokerService.RefreshUser(System.String,System.String)">
+            <summary>
+            Refresh User in broker
+            </summary>
+            <param name="Username"></param>
+            <param name="Password"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Dashboard.Services.BrokerService.RunMosquittoCtrlCommand(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dashboard.Services.CommandResult">
+            <summary>
+            DYNSEC Command results
+            </summary>
+        </member>
+        <member name="P:Dashboard.Services.CommandResult.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="P:Dashboard.Services.CommandResult.Output">
+            <summary>
+            Output
+            </summary>
+        </member>
+        <member name="P:Dashboard.Services.CommandResult.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="T:Dashboard.Services.MqttService">
+            <summary>
+            Mqtt Service
+            </summary>
+        </member>
+        <member name="M:Dashboard.Services.MqttService.#ctor">
+            <summary>
+            mqtt service constructor
+            </summary>
+        </member>
+        <member name="M:Dashboard.Services.MqttService.ConnectAsync">
+            <summary>
+            Connect async with admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Services.MqttService.SubscribeAsync(System.String)">
+            <summary>
+            sub
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dashboard.Services.MqttService.PublishAsync(System.String,System.String)">
+            <summary>
+            pub
+            </summary>
+            <param name="topic"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
         <member name="T:Dashboard.Services.SMTPService">
             <summary>
             Email Sender class for Papercut SMTP
@@ -365,6 +830,15 @@
             <summary>
             Send Email message
             </summary>
+        </member>
+        <member name="M:Dashboard.Services.SMTPService.SendInventoryRequest(Dashboard.Models.Supplier,Dashboard.Models.Product,System.Int32,Dashboard.Models.User)">
+            <summary>
+            Request Supplier for stocks
+            </summary>
+            <param name="reciver"></param>
+            <param name="product"></param>
+            <param name="stockRequire"></param>
+            <param name="user"></param>
         </member>
         <member name="T:Dashboard.Utility.CustomException">
             <summary>

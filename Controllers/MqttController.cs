@@ -23,7 +23,7 @@ namespace Dashboard.Controllers
         /// <param name="topic"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Policy = "FullAccessPolicy")]
         [HttpPost("publish")]
         public async Task<IActionResult> Publish(string topic, string message)
         {
@@ -36,7 +36,7 @@ namespace Dashboard.Controllers
         /// </summary>
         /// <param name="topic"></param>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Policy = "FullAccessPolicy")]
         [HttpPost("subscribe")]
         public async Task<IActionResult> Subscribe(string topic)
         {

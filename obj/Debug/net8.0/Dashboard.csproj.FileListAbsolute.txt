@@ -56,7 +56,6 @@ C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Configurat
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Memory.Data.dll
-C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.Security.Permissions.dll

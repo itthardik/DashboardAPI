@@ -1,13 +1,10 @@
 
-//dotnet ef dbcontext scaffold "Name=ApiContext" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir DataContext --context ApiContext --force
-
 using Dashboard.DataContext;
 using Dashboard.Repository;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Services;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -48,11 +45,9 @@ namespace Dashboard
             builder.Services.AddHangfire(x => x.UseSqlServerStorage(configuration["ConnectionStrings:ApiContext"]));
             builder.Services.AddHangfireServer();
 
-            builder.Services.AddSignalR();
             builder.Services.AddSingleton<MqttService>(serviceProvider =>
             {
-                var hubContext = serviceProvider.GetRequiredService<IHubContext<MqttHub>>();
-                return new MqttService(hubContext);
+                return new MqttService();
             });
 
             builder.Services.AddEndpointsApiExplorer();
@@ -143,8 +138,6 @@ namespace Dashboard
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.MapHub<MqttHub>("/mqtthub");
 
             var mqttService = app.Services.GetRequiredService<MqttService>();
 

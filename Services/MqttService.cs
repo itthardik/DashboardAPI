@@ -1,7 +1,5 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
-using Microsoft.AspNetCore.SignalR;
-using System.Text;
 
 namespace Dashboard.Services
 {
@@ -11,7 +9,6 @@ namespace Dashboard.Services
     public class MqttService
     {
         private readonly IMqttClient _mqttClient;
-        private readonly IHubContext<MqttHub> _hubContext;
         private readonly Timer _reconnectTimer;
         private bool _isReconnecting;
         private async void CheckConnectionStatus(object state)
@@ -27,16 +24,13 @@ namespace Dashboard.Services
         /// <summary>
         /// mqtt service constructor
         /// </summary>
-        /// <param name="hubContext"></param>
-        public MqttService(IHubContext<MqttHub> hubContext)
+        public MqttService()
         {
             var factory = new MqttFactory();
             _mqttClient = factory.CreateMqttClient();
-            _hubContext = hubContext;
 
             _mqttClient.ConnectedAsync += OnConnectedAsync;
             _mqttClient.DisconnectedAsync += OnDisconnectedAsync;
-            _mqttClient.ApplicationMessageReceivedAsync += OnApplicationMessageReceivedAsync;
 
             _reconnectTimer = new Timer(CheckConnectionStatus!, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
         }
@@ -56,16 +50,6 @@ namespace Dashboard.Services
             _reconnectTimer.Change(0, (int)TimeSpan.FromMinutes(1).TotalMilliseconds);
             return Task.CompletedTask;
         }
-
-        private async Task OnApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs e)
-        {
-            var payloadArray = e.ApplicationMessage.PayloadSegment.ToArray();
-
-            var payload = Encoding.UTF8.GetString(payloadArray);
-
-
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", e.ApplicationMessage.Topic, payload);
-        }
     
         /// <summary>
         /// Connect async with admin
@@ -83,7 +67,6 @@ namespace Dashboard.Services
                     {
                         options.WithUri("ws://127.0.0.1:9001");
                     })
-                    //.WithTcpServer("localhost")
                     .WithCleanSession(true)
                     .Build();
                 var result = await _mqttClient.ConnectAsync(mqttOptions, CancellationToken.None);
