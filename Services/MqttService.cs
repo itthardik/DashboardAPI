@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Dashboard.Services
 {
-
+    /// <summary>
+    /// Mqtt Service
+    /// </summary>
     public class MqttService
     {
         private readonly IMqttClient _mqttClient;
         private readonly IHubContext<MqttHub> _hubContext;
-        //private readonly IServiceProvider _serviceProvider;
         private readonly Timer _reconnectTimer;
         private bool _isReconnecting;
         private async void CheckConnectionStatus(object state)
@@ -23,19 +24,21 @@ namespace Dashboard.Services
             }
         }
 
-        public MqttService(IHubContext<MqttHub> hubContext, IServiceProvider serviceProvider)
+        /// <summary>
+        /// mqtt service constructor
+        /// </summary>
+        /// <param name="hubContext"></param>
+        public MqttService(IHubContext<MqttHub> hubContext)
         {
             var factory = new MqttFactory();
             _mqttClient = factory.CreateMqttClient();
             _hubContext = hubContext;
-            //_serviceProvider = serviceProvider;
-            //_apiContext = _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ApiContext>();
 
             _mqttClient.ConnectedAsync += OnConnectedAsync;
             _mqttClient.DisconnectedAsync += OnDisconnectedAsync;
             _mqttClient.ApplicationMessageReceivedAsync += OnApplicationMessageReceivedAsync;
 
-            _reconnectTimer = new Timer(CheckConnectionStatus, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
+            _reconnectTimer = new Timer(CheckConnectionStatus!, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
         }
 
 
@@ -64,6 +67,10 @@ namespace Dashboard.Services
             await _hubContext.Clients.All.SendAsync("ReceiveMessage", e.ApplicationMessage.Topic, payload);
         }
     
+        /// <summary>
+        /// Connect async with admin
+        /// </summary>
+        /// <returns></returns>
         public async Task ConnectAsync()
         {
 
@@ -92,12 +99,23 @@ namespace Dashboard.Services
             }
         }
 
+        /// <summary>
+        /// sub
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <returns></returns>
         public async Task SubscribeAsync(string topic)
         {
             await _mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(topic).Build());
             
         }
 
+        /// <summary>
+        /// pub
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task PublishAsync(string topic, string message)
         {
             var mqttMessage = new MqttApplicationMessageBuilder()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Dashboard.Models;
-
+#pragma warning disable 1591
 public partial class Category
 {
     public int Id { get; set; }

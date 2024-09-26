@@ -15,6 +15,7 @@ namespace RealTimeComTest.Models.ViewModels.Request
         [StringLength(300, MinimumLength = 2, ErrorMessage = "The Username must be between 2 and 300 characters.")]
         [FromHeader(Name = "Username")]
         public string? Username { get; set; }
+
         /// <summary>
         /// Password is Required 
         /// </summary>

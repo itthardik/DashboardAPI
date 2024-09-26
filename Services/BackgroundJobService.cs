@@ -10,6 +10,12 @@ using Newtonsoft.Json;
 
 namespace Dashboard.Services
 {
+    /// <summary>
+    /// Bg Service
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="mqttService"></param>
+    /// <param name="orderRepository"></param>
     public class BackgroundJobService(ApiContext context, MqttService mqttService, IOrderRepository orderRepository)
     {
         private readonly ApiContext _context = context;
@@ -22,6 +28,11 @@ namespace Dashboard.Services
             Role = "Admin",
             Email = "system@hm.com"
         };
+
+        /// <summary>
+        /// Restock Notification at Midnight
+        /// </summary>
+        /// <returns></returns>
         public async Task  RestockBasedOnNotification()
         {
             try
@@ -76,12 +87,20 @@ namespace Dashboard.Services
             }
         }
 
+        /// <summary>
+        /// Update Avg Daily Usage and Reorder Point for all products
+        /// </summary>
         public void UpdateAverageDailyUsageAndReorderPointForAllProducts()
         {
             _context.Database.ExecuteSqlRaw("EXEC UpdateAverageDailyUsageAndReorderPoint");
             return;
         }
 
+        /// <summary>
+        /// Get Excel Data and send req of orders
+        /// </summary>
+        /// <param name="excelFilePath"></param>
+        /// <returns></returns>
         public async Task ProcessExcelAndPlaceOrders(string excelFilePath)
         {
             using var workbook = new XLWorkbook(excelFilePath);
@@ -98,6 +117,10 @@ namespace Dashboard.Services
             }
         }
 
+        /// <summary>
+        /// Get Total Orders in Last 1 min
+        /// </summary>
+        /// <returns></returns>
         public async Task GetTotalOrderInLast60Sec()
         {
             var result = _context.TotalSalesSPResponses.FromSqlRaw("Exec GetRecentOrderItems").ToList()[0];

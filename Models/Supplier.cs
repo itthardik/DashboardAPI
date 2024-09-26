@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Dashboard.Models;
 
+#pragma warning disable 1591
 public partial class Supplier
 {
     public int Id { get; set; }
@@ -13,5 +14,5 @@ public partial class Supplier
 
     public string Address { get; set; } = null!;
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<Product> Products { get; set; } = [];
 }

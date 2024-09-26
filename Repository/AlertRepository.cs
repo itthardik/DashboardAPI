@@ -12,10 +12,22 @@ using System.Text.Json;
 
 namespace Dashboard.Repository
 {
+    /// <summary>
+    /// Alert Repo
+    /// </summary>
+    /// <param name="context"></param>
     public class AlertRepository(ApiContext context) : IAlertRepository
     {
         private readonly ApiContext _context = context;
-        public JsonResult GetAllRepository(int pageNumber, int pageSize)
+
+        /// <summary>
+        /// Get All Alerts
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
+        public JsonResult GetAllAlerts(int pageNumber, int pageSize)
         {
             var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderBy(alert => alert.AlertLevel).Include(a=>a.Product);
             if (allAlerts.IsNullOrEmpty())

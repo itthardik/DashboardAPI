@@ -5,9 +5,24 @@ namespace Dashboard.DataContext
 {
     public partial class ApiContext
     {
+        /// <summary>
+        /// Revenue SP response
+        /// </summary>
         public virtual DbSet<RevenueSPResponse> RevenueSPResponses { get; set; }
+
+        /// <summary>
+        /// Sales By Category SP Responses
+        /// </summary>
         public virtual DbSet<SalesByCategorySPResponse> SalesByCategorySPResponses { get; set; }
+
+        /// <summary>
+        /// Total Sales SP Responses
+        /// </summary>
         public virtual DbSet<TotalSalesSPResponse> TotalSalesSPResponses { get; set; }
+
+        /// <summary>
+        /// Top Selling Products SP Responses
+        /// </summary>
         public virtual DbSet<TopSellingProductsSPResponse> TopSellingProductsSPResponses { get; set; }
 
         static partial void OnModelCreatingPartial(ModelBuilder modelBuilder)

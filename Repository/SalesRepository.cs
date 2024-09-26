@@ -10,9 +10,19 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Dashboard.Repository
 {
+    /// <summary>
+    /// Sales Repo
+    /// </summary>
+    /// <param name="apiContext"></param>
     public class SalesRepository(ApiContext apiContext) : ISalesRepository
     {
         private readonly ApiContext _context = apiContext;
+
+        /// <summary>
+        /// Get Sales Stats By Category Based On Days
+        /// </summary>
+        /// <param name="days"></param>
+        /// <returns></returns>
         public JsonResult GetSalesStatsByCategoryBasedOnDays(int days)
         {
             var result = _context.SalesByCategorySPResponses
@@ -22,6 +32,13 @@ namespace Dashboard.Repository
             return new JsonResult(new { data = result }) { StatusCode = 200 };
         }
 
+        /// <summary>
+        /// Get Overall Sales Stats Based On Days
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
         public JsonResult GetOverallSalesStatsBasedOnDays(int year, int month, int day)
         {
             var result = _context.OrderItems
@@ -31,6 +48,13 @@ namespace Dashboard.Repository
             return new JsonResult(new { data = result }) { StatusCode = 200 };
         }
 
+        /// <summary>
+        /// Get Top Selling Products By Pagination
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public JsonResult GetTopSellingProductsByPagination(int pageNumber, int pageSize)
         {
             var topSellingProducts = _context.TopSellingProductsSPResponses.FromSqlRaw("Exec GetTopSellingProducts").ToList();
@@ -45,6 +69,13 @@ namespace Dashboard.Repository
             return new JsonResult(new { maxPages, data = topSellingProductsByPagination });
         }
 
+        /// <summary>
+        /// Get Top Selling Categories By Pagination
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public JsonResult GetTopSellingCategoriesByPagination(int pageNumber, int pageSize)
         {
             var topSellingCategories = _context.TopSellingProductsSPResponses.FromSqlRaw("Exec GetCategorySalesSummary").ToList();

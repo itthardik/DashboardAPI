@@ -7,14 +7,22 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 namespace Dashboard.Controllers
 {
-
+    /// <summary>
+    /// Mqtt Controller
+    /// </summary>
+    /// <param name="mqttService"></param>
     [ApiController]
-
     [Route("api/[controller]")]
     public class MqttController(MqttService mqttService) : ControllerBase
     {
         private readonly MqttService _mqttService = mqttService;
 
+        /// <summary>
+        /// Publish New Message
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("publish")]
         public async Task<IActionResult> Publish(string topic, string message)
@@ -23,7 +31,11 @@ namespace Dashboard.Controllers
             return Ok(new { status = "Message Published" });
         }
 
-
+        /// <summary>
+        /// Sub topic
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("subscribe")]
         public async Task<IActionResult> Subscribe(string topic)
@@ -31,9 +43,6 @@ namespace Dashboard.Controllers
             await _mqttService.SubscribeAsync(topic);
             return Ok(new { status = $"Subscribed to {topic}" });
         }
-
-        //[HttpPost("publishOrderUpdates")]
-        //public async Task<IActionResult> PublishOrderUpdates(int id, int quantity)
     }
 
 }

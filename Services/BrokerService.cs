@@ -2,6 +2,9 @@
 
 namespace Dashboard.Services
 {
+    /// <summary>
+    /// Broker Service
+    /// </summary>
     public class BrokerService
     {
         private readonly string _mosquittoCtrlPath = @"C:\Program Files\mosquitto\mosquitto_ctrl";
@@ -10,6 +13,14 @@ namespace Dashboard.Services
         private readonly string _adminUsername = "admin"; 
         private readonly string _adminPassword = "admin";
 
+        /// <summary>
+        /// Add User to broker
+        /// </summary>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        /// <param name="Role"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private async Task<CommandResult> AddUser(string Username, string Password, string Role)
         {
             var command = $"dynsec createClient {Username} {Password}";
@@ -32,6 +43,14 @@ namespace Dashboard.Services
             return result;
         }
 
+        /// <summary>
+        /// Login user to broker
+        /// </summary>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        /// <param name="Role"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<CommandResult> LoginUser(string Username, string Password, string Role)
         {
             // Check Client Exist
@@ -62,6 +81,12 @@ namespace Dashboard.Services
 
         }
 
+        /// <summary>
+        /// Logout User to broker
+        /// </summary>
+        /// <param name="Username"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<CommandResult> LogoutUser(string Username)
         {
             var command = $"dynsec disableClient {Username}";
@@ -72,6 +97,13 @@ namespace Dashboard.Services
             return result;
         }
 
+        /// <summary>
+        /// Refresh User in broker
+        /// </summary>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<CommandResult> RefreshUser(string Username, string Password)
         {
             var command = $"dynsec setClientPassword {Username} {Password}";
@@ -82,18 +114,11 @@ namespace Dashboard.Services
             return result;
         }
 
-        //public async Task<CommandResult> DeleteUser(string Username)
-        //{
-        //    var command = $"dynsec deleteClient {Username}";
-        //    var result = await RunMosquittoCtrlCommand(command);
-
-        //    if (!result.Success)
-        //    {
-        //        return result;
-        //    }
-        //    return result;
-        //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         private async Task<CommandResult> RunMosquittoCtrlCommand(string command)
         {
             var startInfo = new ProcessStartInfo
@@ -128,10 +153,24 @@ namespace Dashboard.Services
 
     }
 
+    /// <summary>
+    /// DYNSEC Command results
+    /// </summary>
     public class CommandResult
     {
+        /// <summary>
+        /// Success
+        /// </summary>
         public bool Success { get; set; }
+
+        /// <summary>
+        /// Output
+        /// </summary>
         public string? Output { get; set; }
+
+        /// <summary>
+        /// Error
+        /// </summary>
         public string? Error { get; set; }
     }
 }

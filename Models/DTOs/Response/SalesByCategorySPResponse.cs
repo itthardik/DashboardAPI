@@ -1,5 +1,8 @@
 ﻿namespace Dashboard.Models.DTOs.Response
 {
+    /// <summary>
+    /// Sales by category sp response
+    /// </summary>
     public class SalesByCategorySPResponse
     {
         /// <summary>

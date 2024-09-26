@@ -12,8 +12,6 @@ namespace Dashboard.Services
     {
         private readonly string _Host;
         private readonly int _Port;
-        //private readonly string _SMTP_USERNAME;
-        //private readonly string _SMTP_PASSWORD;
 
         /// <summary>
         /// Email sender constructor
@@ -24,11 +22,8 @@ namespace Dashboard.Services
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // Use Papercut SMTP settings
             _Host = configuration.GetValue<string>("AppConstraint:Host")!;
             _Port = configuration.GetValue<int>("AppConstraint:Port");
-            //_SMTP_USERNAME = configuration.GetValue<string>("AppConstraint:SMTP_USERNAME");
-            //_SMTP_PASSWORD = configuration.GetValue<string>("AppConstraint:SMTP_PASSWORD");
         }
 
         /// <summary>
@@ -54,7 +49,13 @@ namespace Dashboard.Services
             mailMessage.To.Add(reciverEmail);
             client.Send(mailMessage);
         }
-
+        /// <summary>
+        /// Request Supplier for stocks
+        /// </summary>
+        /// <param name="reciver"></param>
+        /// <param name="product"></param>
+        /// <param name="stockRequire"></param>
+        /// <param name="user"></param>
         public void SendInventoryRequest(Supplier reciver, Product product, int stockRequire, User user) {
             string subject = $"Urgent Restock Needed for {product.Name} (ID: {product.Id})";
             string body = $@"<!DOCTYPE html>

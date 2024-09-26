@@ -10,12 +10,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Controllers
 {
+    /// <summary>
+    /// Sales Controller
+    /// </summary>
+    /// <param name="salesRepository"></param>
     [Route("api/sales")]
     [ApiController]
     public class SalesController(ISalesRepository salesRepository) : ControllerBase
     {
         private readonly ISalesRepository _salesRepository = salesRepository;
 
+        /// <summary>
+        /// Get Sales by Category
+        /// </summary>
+        /// <param name="days"></param>
+        /// <returns></returns>
         [Authorize(Policy = "SalesAccessPolicy")]
         [HttpGet("salesStatsByCategory")]
         public JsonResult GetSalesStatsByCategoryBasedOnDays([FromQuery] string days)
@@ -43,6 +52,13 @@ namespace Dashboard.Controllers
             }
         }
 
+        /// <summary>
+        /// Get Overall Sales
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
         [Authorize(Policy = "SalesAccessPolicy")]
         [HttpGet("overallSalesStats")]
         public JsonResult GetOverallSalesStatsBasedOnDays(int year, int month, int day)
@@ -62,6 +78,12 @@ namespace Dashboard.Controllers
             }
         }
         
+        /// <summary>
+        /// Get Top Selling Products
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         [Authorize(Policy = "SalesAccessPolicy")]
         [HttpGet("topProducts")]
         public JsonResult GetTopSellingProductsByPagination(int pageNumber, int pageSize)
@@ -82,6 +104,12 @@ namespace Dashboard.Controllers
             }
         }
         
+        /// <summary>
+        /// Get Top Selling Categories
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         [Authorize(Policy = "SalesAccessPolicy")]
         [HttpGet("topCategories")]
         public JsonResult GetTopSellingCategoriesByPagination(int pageNumber, int pageSize)

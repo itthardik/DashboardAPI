@@ -10,10 +10,22 @@ using Newtonsoft.Json;
 
 namespace Dashboard.Repository
 {
+    /// <summary>
+    /// Order Repo
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="mqttService"></param>
     public class OrderRepository(ApiContext context, MqttService mqttService) : IOrderRepository
     {
         private readonly ApiContext _context= context;
         private readonly MqttService _mqttService = mqttService;
+
+        /// <summary>
+        /// Place new Order
+        /// </summary>
+        /// <param name="orderItems"></param>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public async Task<JsonResult> PlaceOrder(List<RequestOrderItem> orderItems)
         {
             Order newOrder = new (){UserId=3,TotalPrice=0, Status = "Pending"};

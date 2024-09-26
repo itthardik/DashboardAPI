@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Dashboard.Models;
 
-/// <summary>
-/// Represents a user in the system.
-/// </summary>
+#pragma warning disable 1591
 public partial class User
 {
     public int Id { get; set; }
 
-    /// <summary>
-    /// Gets or sets the username of the user.
-    /// </summary>
-    /// <example>john_doe</example>
     public string Username { get; set; } = null!;
 
     public string Password { get; set; } = null!;
@@ -32,7 +27,7 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
-    public virtual ICollection<CustomerSearch> CustomerSearches { get; set; } = new List<CustomerSearch>();
+    public virtual ICollection<CustomerSearch> CustomerSearches { get; set; } = [];
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual ICollection<Order> Orders { get; set; } = [];
 }

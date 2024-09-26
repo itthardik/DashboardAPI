@@ -52,7 +52,7 @@ namespace Dashboard
             builder.Services.AddSingleton<MqttService>(serviceProvider =>
             {
                 var hubContext = serviceProvider.GetRequiredService<IHubContext<MqttHub>>();
-                return new MqttService(hubContext, serviceProvider);
+                return new MqttService(hubContext);
             });
 
             builder.Services.AddEndpointsApiExplorer();
@@ -171,11 +171,10 @@ namespace Dashboard
                 service => service.GetTotalOrderInLast60Sec(),
                 Cron.Minutely);
 
-            app.MapPost("/start-job", async (IBackgroundJobClient backgroundJobClient) =>
+            app.MapPost("/start-job", (IBackgroundJobClient backgroundJobClient) =>
             {
-                string excelFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Orders.xlsx"); ; // Update this path
+                string excelFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Orders.xlsx");
 
-                // Enqueue the job
                 backgroundJobClient.Enqueue<BackgroundJobService>(service =>
                     service.ProcessExcelAndPlaceOrders(excelFilePath));
 

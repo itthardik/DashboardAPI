@@ -7,7 +7,6 @@ namespace Dashboard.Repository.Interfaces
     /// </summary>
     public interface IRevenueRepository
     {
-        //void GetRevenueAndProfitByCategoryAndDate();
 
         /// <summary>
         /// Get Product by product id

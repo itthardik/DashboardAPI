@@ -5,7 +5,7 @@ using Dashboard.Models.DTOs.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dashboard.DataContext;
-
+#pragma warning disable 1591
 public partial class ApiContext : DbContext
 {
     public ApiContext()

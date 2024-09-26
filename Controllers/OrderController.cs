@@ -7,13 +7,21 @@ using Dashboard.Models.DTOs.Request;
 
 namespace Dashboard.Controllers
 {
+    /// <summary>
+    /// Order Controller
+    /// </summary>
+    /// <param name="orderRepository"></param>
     [ApiController]
-
-    [Route("api/[controller]")]
+    [Route("api/order")]
     public class OrderController(IOrderRepository orderRepository) : ControllerBase
     {
         private readonly IOrderRepository _orderRepository = orderRepository;
 
+        /// <summary>
+        /// Place New Order
+        /// </summary>
+        /// <param name="products"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> PlaceOrder([FromBody] List<RequestOrderItem> products)
         {
