@@ -1,15 +1,204 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\datacontext\\apicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:datacontext\\apicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\datacontext\\partialapicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:datacontext\\partialapicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\utility\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:utility\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\alertcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\alertcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\services\\backgroundjobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:services\\backgroundjobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\utility\\jwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:utility\\jwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\utility\\customexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:utility\\customexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\utility\\validation\\validroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:utility\\validation\\validroleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\utility\\validation\\validationutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:utility\\validation\\validationutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\services\\smtpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:services\\smtpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\services\\mqttservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:services\\mqttservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\services\\mqtthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:services\\mqtthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\services\\brokerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:services\\brokerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\isalesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\isalesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\irevenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\irevenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\interfaces\\ialertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\interfaces\\ialertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\revenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\revenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\salesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\salesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\repository\\alertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:repository\\alertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\request\\requestuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\request\\requestuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\request\\requestorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\request\\requestorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\response\\totalsalesspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\response\\totalsalesspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\response\\topsellingproductsspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\response\\topsellingproductsspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\response\\salesbycategoryspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\response\\salesbycategoryspresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\response\\revenuespresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\response\\revenuespresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\dtos\\response\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\dtos\\response\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\customersearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\customersearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\models\\alert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:models\\alert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\revenuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\revenuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\mqttcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\mqttcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|c:\\users\\hardik.sharma\\source\\repos\\dashboard\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE4B38D5-BB1E-49C2-8578-DCCD5690128F}|Dashboard.csproj|solutionrelative:controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 217,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 204,
+          "SelectedChildIndex": 36,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,16 +223,617 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Logger.cs",
+              "RelativeDocumentMoniker": "Utility\\Logger.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Logger.cs",
+              "RelativeToolTip": "Utility\\Logger.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:37.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Jwt.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Jwt.cs",
+              "RelativeDocumentMoniker": "Utility\\Jwt.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Jwt.cs",
+              "RelativeToolTip": "Utility\\Jwt.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:35.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CustomException.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\CustomException.cs",
+              "RelativeDocumentMoniker": "Utility\\CustomException.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\CustomException.cs",
+              "RelativeToolTip": "Utility\\CustomException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:34.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ValidRoleAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Validation\\ValidRoleAttribute.cs",
+              "RelativeDocumentMoniker": "Utility\\Validation\\ValidRoleAttribute.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Validation\\ValidRoleAttribute.cs",
+              "RelativeToolTip": "Utility\\Validation\\ValidRoleAttribute.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:34.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ValidationUtility.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Validation\\ValidationUtility.cs",
+              "RelativeDocumentMoniker": "Utility\\Validation\\ValidationUtility.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Utility\\Validation\\ValidationUtility.cs",
+              "RelativeToolTip": "Utility\\Validation\\ValidationUtility.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:33.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SMTPService.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\SMTPService.cs",
+              "RelativeDocumentMoniker": "Services\\SMTPService.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\SMTPService.cs",
+              "RelativeToolTip": "Services\\SMTPService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:29.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MqttService.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\MqttService.cs",
+              "RelativeDocumentMoniker": "Services\\MqttService.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\MqttService.cs",
+              "RelativeToolTip": "Services\\MqttService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:28.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MqttHub.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\MqttHub.cs",
+              "RelativeDocumentMoniker": "Services\\MqttHub.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\MqttHub.cs",
+              "RelativeToolTip": "Services\\MqttHub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:27.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BrokerService.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\BrokerService.cs",
+              "RelativeDocumentMoniker": "Services\\BrokerService.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\BrokerService.cs",
+              "RelativeToolTip": "Services\\BrokerService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:27.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:23.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ISalesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\ISalesRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\ISalesRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\ISalesRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\ISalesRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:22.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IRevenueRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IRevenueRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IRevenueRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IRevenueRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IRevenueRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:22.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IOrderRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IOrderRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:21.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IInventoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IInventoryRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IInventoryRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IInventoryRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IInventoryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:20.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IAlertRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IAlertRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IAlertRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\Interfaces\\IAlertRepository.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IAlertRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:19.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "Repository\\UserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:14.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SalesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\SalesRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\SalesRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\SalesRepository.cs",
+              "RelativeToolTip": "Repository\\SalesRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:13.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "RevenueRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\RevenueRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\RevenueRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\RevenueRepository.cs",
+              "RelativeToolTip": "Repository\\RevenueRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:13.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\OrderRepository.cs",
+              "RelativeToolTip": "Repository\\OrderRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:12.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "InventoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\InventoryRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\InventoryRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\InventoryRepository.cs",
+              "RelativeToolTip": "Repository\\InventoryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:09.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "AlertRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\AlertRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\AlertRepository.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Repository\\AlertRepository.cs",
+              "RelativeToolTip": "Repository\\AlertRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:10.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "RequestUser.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Request\\RequestUser.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Request\\RequestUser.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Request\\RequestUser.cs",
+              "RelativeToolTip": "Models\\DTOs\\Request\\RequestUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:02.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "RequestOrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Request\\RequestOrderItem.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Request\\RequestOrderItem.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Request\\RequestOrderItem.cs",
+              "RelativeToolTip": "Models\\DTOs\\Request\\RequestOrderItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:26:01.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "TotalSalesSPResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\TotalSalesSPResponse.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Response\\TotalSalesSPResponse.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\TotalSalesSPResponse.cs",
+              "RelativeToolTip": "Models\\DTOs\\Response\\TotalSalesSPResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:59.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "TopSellingProductsSPResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\TopSellingProductsSPResponse.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Response\\TopSellingProductsSPResponse.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\TopSellingProductsSPResponse.cs",
+              "RelativeToolTip": "Models\\DTOs\\Response\\TopSellingProductsSPResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:58.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "SalesByCategorySPResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\SalesByCategorySPResponse.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Response\\SalesByCategorySPResponse.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\SalesByCategorySPResponse.cs",
+              "RelativeToolTip": "Models\\DTOs\\Response\\SalesByCategorySPResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:57.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "RevenueSPResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\RevenueSPResponse.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Response\\RevenueSPResponse.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\RevenueSPResponse.cs",
+              "RelativeToolTip": "Models\\DTOs\\Response\\RevenueSPResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:56.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LoginResponse.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\LoginResponse.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\Response\\LoginResponse.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\DTOs\\Response\\LoginResponse.cs",
+              "RelativeToolTip": "Models\\DTOs\\Response\\LoginResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:55.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:52.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Supplier.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Supplier.cs",
+              "RelativeDocumentMoniker": "Models\\Supplier.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Supplier.cs",
+              "RelativeToolTip": "Models\\Supplier.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:52.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Product.cs",
+              "RelativeToolTip": "Models\\Product.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAcwCMAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:49.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAcwBMAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:47.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\OrderItem.cs",
+              "RelativeDocumentMoniker": "Models\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\OrderItem.cs",
+              "RelativeToolTip": "Models\\OrderItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:46.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "CustomerSearch.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\CustomerSearch.cs",
+              "RelativeDocumentMoniker": "Models\\CustomerSearch.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\CustomerSearch.cs",
+              "RelativeToolTip": "Models\\CustomerSearch.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:44.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "Models\\Category.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Category.cs",
+              "RelativeToolTip": "Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:43.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Alert.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Alert.cs",
+              "RelativeDocumentMoniker": "Models\\Alert.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Models\\Alert.cs",
+              "RelativeToolTip": "Models\\Alert.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:41.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PartialApiContext.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\DataContext\\PartialApiContext.cs",
+              "RelativeDocumentMoniker": "DataContext\\PartialApiContext.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\DataContext\\PartialApiContext.cs",
+              "RelativeToolTip": "DataContext\\PartialApiContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:35.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApiContext.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\DataContext\\ApiContext.cs",
+              "RelativeDocumentMoniker": "DataContext\\ApiContext.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\DataContext\\ApiContext.cs",
+              "RelativeToolTip": "DataContext\\ApiContext.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAADwvxYBAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:34.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "SalesController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\SalesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SalesController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\SalesController.cs",
+              "RelativeToolTip": "Controllers\\SalesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:30.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "RevenueController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\RevenueController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RevenueController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\RevenueController.cs",
+              "RelativeToolTip": "Controllers\\RevenueController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:29.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Controllers\\OrderController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:28.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "MqttController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\MqttController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MqttController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\MqttController.cs",
+              "RelativeToolTip": "Controllers\\MqttController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:28.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InventoryController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "Controllers\\InventoryController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:27.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:26.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AlertController.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\AlertController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AlertController.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Controllers\\AlertController.cs",
+              "RelativeToolTip": "Controllers\\AlertController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:23.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:25:03.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BackgroundJobService.cs",
+              "DocumentMoniker": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\BackgroundJobService.cs",
+              "RelativeDocumentMoniker": "Services\\BackgroundJobService.cs",
+              "ToolTip": "C:\\Users\\hardik.sharma\\source\\repos\\Dashboard\\Services\\BackgroundJobService.cs",
+              "RelativeToolTip": "Services\\BackgroundJobService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T05:41:51.085Z",
+              "EditorCaption": ""
             }
           ]
         }

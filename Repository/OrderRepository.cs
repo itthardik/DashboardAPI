@@ -57,7 +57,6 @@ namespace Dashboard.Repository
                 }
                 var orderDiscount = (new Random().Next(0, 30) / 100) * product.SellingPrice;
 
-
                 OrderItem item = new()
                 {
                     ProductId = i.ProductId,
@@ -70,6 +69,8 @@ namespace Dashboard.Repository
                 newOrder.TotalPrice += item.Price - (decimal)item.Discount;
                 _context.OrderItems.Add(item);
                 _context.SaveChanges();
+
+                await _mqttService.PublishAsync("sales/salesByCategory", JsonConvert.SerializeObject(new {product.CategoryId, i.Quantity}));
             }
 
             await _mqttService.PublishAsync("inventory/orderItems", JsonConvert.SerializeObject(orderItems));

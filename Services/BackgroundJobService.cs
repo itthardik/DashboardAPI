@@ -1,18 +1,12 @@
-﻿using Azure.Core;
+﻿using ClosedXML.Excel;
 using Dashboard.DataContext;
 using Dashboard.Models;
 using Dashboard.Models.DTOs.Request;
-using Dashboard.Utility;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using ClosedXML.Excel;
-using Microsoft.EntityFrameworkCore;
 using Dashboard.Repository.Interfaces;
+using Dashboard.Utility;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Dashboard.Services
 {
@@ -90,22 +84,25 @@ namespace Dashboard.Services
 
         public async Task ProcessExcelAndPlaceOrders(string excelFilePath)
         {
-            using (var workbook = new XLWorkbook(excelFilePath))
+            using var workbook = new XLWorkbook(excelFilePath);
+            var worksheet = workbook.Worksheet(1);
+            var rowCount = worksheet.LastRowUsed().RowNumber();
+
+            for (int row = 2; row <= rowCount; row++)
             {
-                var worksheet = workbook.Worksheet(1); // Assuming data is in the first worksheet
-                var rowCount = worksheet.LastRowUsed().RowNumber();
+                var productId = (int)worksheet.Cell(row, 1).GetDouble();
+                var quantity = (int)worksheet.Cell(row, 2).GetDouble();
+                var res = await _orderRepository.PlaceOrder([ new() { ProductId = productId, Quantity = quantity } ]);
 
-                for (int row = 2; row <= rowCount; row++) // Assuming the first row is headers
-                {
-                    var productId = (int) worksheet.Cell(row, 1).GetDouble(); // Adjust column index as needed
-                    var quantity = (int) worksheet.Cell(row, 2).GetDouble();
-                    var res = await _orderRepository.PlaceOrder(new() { new() { ProductId = productId, Quantity= quantity} });
-                    Console.WriteLine(res);
-
-                    // Wait for 1 seconds before processing the next order
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                }
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
+        }
+
+        public async Task GetTotalOrderInLast60Sec()
+        {
+            var result = _context.TotalSalesSPResponses.FromSqlRaw("Exec GetRecentOrderItems").ToList()[0];
+
+            await _mqttService.PublishAsync("sales/overallSales", JsonConvert.SerializeObject(result));
         }
 
     }

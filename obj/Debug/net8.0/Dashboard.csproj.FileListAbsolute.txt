@@ -140,3 +140,14 @@ C:\Users\hardik.sharma\source\repos\Dashboard\obj\Debug\net8.0\Dashboard.pdb
 C:\Users\hardik.sharma\source\repos\Dashboard\obj\Debug\net8.0\Dashboard.genruntimeconfig.cache
 C:\Users\hardik.sharma\source\repos\Dashboard\obj\Debug\net8.0\ref\Dashboard.dll
 C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Dashboard.xml
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Hangfire.AspNetCore.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Hangfire.Core.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Hangfire.NetCore.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Hangfire.SqlServer.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\Irony.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\hardik.sharma\source\repos\Dashboard\bin\Debug\net8.0\XLParser.dll

@@ -181,6 +181,51 @@
 
 --------------------------------------------------------------------------------
 
+-- Migration ID: TKT-21
+-- Script Name: 2024-09-24__TKT-21__Create__GetTotalSalesByCategory.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve total sales quantities for each product category for today.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-22
+-- Script Name: 2024-09-24__TKT-22__Create__GetOrderItemsByDate.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve order items for a specified date.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-23
+-- Script Name: 2024-09-24__TKT-23__Create__GetRecentOrderItems.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve the total quantity of order items created in the last 5 seconds.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-24
+-- Script Name: 2024-09-26__TKT-24__Create__GetTopSellingProducts.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-26
+-- Description: This migration creates a stored procedure to retrieve the total sales of each product, ordered by total sales in descending order.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-25
+-- Script Name: 2024-09-26__TKT-25__Create__GetCategorySalesSummary.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-26
+-- Description: This migration creates a stored procedure to retrieve the total sales for each category, ordered by total sales in descending order.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
 
 
 ----------------use this template and place migration changes above-------------

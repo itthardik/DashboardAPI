@@ -2,17 +2,16 @@
 //dotnet ef dbcontext scaffold "Name=ApiContext" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir DataContext --context ApiContext --force
 
 using Dashboard.DataContext;
-using Dashboard.Repository.Interfaces;
 using Dashboard.Repository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Dashboard.Repository.Interfaces;
 using Dashboard.Services;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.OpenApi.Models;
-using System.Text.Json.Serialization;
 using Hangfire;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Dashboard
 {
@@ -40,6 +39,7 @@ namespace Dashboard
             builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IAlertRepository, AlertRepository>();
+            builder.Services.AddScoped<ISalesRepository, SalesRepository>();
 
             builder.Services.AddTransient<BrokerService>();
 
@@ -111,11 +111,17 @@ namespace Dashboard
             builder.Services.AddAuthorizationBuilder()
                 .AddPolicy("FullAccessPolicy", policy =>
                     policy.RequireRole("admin"))
+                .AddPolicy("SalesAccessPolicy", policy =>
+                    policy.RequireRole("sales", "admin")
+                    )
                 .AddPolicy("RevenueAccessPolicy", policy =>
-                    policy.RequireRole("revenue","admin")
+                    policy.RequireRole("revenue", "admin")
                     )
                 .AddPolicy("InventoryAccessPolicy", policy =>
                     policy.RequireRole("inventory", "admin")
+                    )
+                 .AddPolicy("Inventory&RevenueAccessPolicy", policy =>
+                    policy.RequireRole("inventory", "revenue", "admin")
                     );
 
 
@@ -157,9 +163,13 @@ namespace Dashboard
                 service => service.RestockBasedOnNotification(),
                 Cron.Daily);
             RecurringJob.AddOrUpdate<BackgroundJobService>(
-                "daily-usage-update-job",
+                "avg-daily-usage-update-job",
                 service => service.UpdateAverageDailyUsageAndReorderPointForAllProducts(),
                 Cron.Daily);
+            RecurringJob.AddOrUpdate<BackgroundJobService>(
+                "get-overall-sales-each-5sec",
+                service => service.GetTotalOrderInLast60Sec(),
+                Cron.Minutely);
 
             app.MapPost("/start-job", async (IBackgroundJobClient backgroundJobClient) =>
             {

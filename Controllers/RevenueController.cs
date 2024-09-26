@@ -22,8 +22,7 @@ namespace Dashboard.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
-        //[AllowAnonymous]
-        [Authorize(Policy = "RevenueAccessPolicy")]
+        [Authorize(Policy = "Inventory&RevenueAccessPolicy")]
         [HttpGet("productCost")]
         public JsonResult GetProductCostWithIdOrName([FromQuery] int? id, [FromQuery] string? name)
         {
@@ -50,6 +49,8 @@ namespace Dashboard.Controllers
                 return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
+        
+        
         /// <summary>
         /// Get All Search Values By Pagination
         /// </summary>

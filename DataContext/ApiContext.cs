@@ -17,8 +17,6 @@ public partial class ApiContext : DbContext
     {
     }
 
-    public virtual DbSet<RevenueSPResponse> RevenueSPResponses { get; set; }
-
     public virtual DbSet<Alert> Alerts { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
@@ -40,11 +38,6 @@ public partial class ApiContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<RevenueSPResponse>(entity =>
-        {
-            entity.HasNoKey();
-            entity.ToView(null); // Treats this entity as a query only
-        });
         modelBuilder.Entity<Alert>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Alert__3213E83F57BAE375");
@@ -283,5 +276,5 @@ public partial class ApiContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    static partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

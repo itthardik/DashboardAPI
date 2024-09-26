@@ -45,6 +45,7 @@ namespace Dashboard.Controllers
                 return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
+        
         /// <summary>
         /// Add Inventory With Product Id
         /// </summary>

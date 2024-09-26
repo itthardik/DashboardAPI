@@ -124,6 +124,21 @@
             Net Profit
             </summary>
         </member>
+        <member name="P:Dashboard.Models.DTOs.Response.SalesByCategorySPResponse.CategoryId">
+            <summary>
+            Category id
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.SalesByCategorySPResponse.Category">
+            <summary>
+            Category Name
+            </summary>
+        </member>
+        <member name="P:Dashboard.Models.DTOs.Response.SalesByCategorySPResponse.TotalSales">
+            <summary>
+            Total Sales
+            </summary>
+        </member>
         <member name="T:Dashboard.Models.User">
             <summary>
             Represents a user in the system.

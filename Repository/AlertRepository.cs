@@ -19,7 +19,7 @@ namespace Dashboard.Repository
         {
             var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderBy(alert => alert.AlertLevel).Include(a=>a.Product);
             if (allAlerts.IsNullOrEmpty())
-                throw new CustomException("No Inventory Alerts found", 404);
+                throw new CustomException("No Inventory Alerts found", 200);
 
             var maxPages = (int)Math.Ceiling((decimal)(allAlerts.Count()) / pageSize);
 

@@ -33,11 +33,11 @@ public partial class Product
 
     public decimal? AverageDailyUsage { get; set; }
 
-    public virtual ICollection<Alert> Alerts { get; set; } = new List<Alert>();
+    public virtual ICollection<Alert> Alerts { get; set; } = [];
 
     public virtual Category Category { get; set; } = null!;
 
-    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = [];
 
     public virtual Supplier Supplier { get; set; } = null!;
 }

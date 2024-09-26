@@ -30,7 +30,7 @@ BEGIN
         OrderItem oi
     ON 
         p.id = oi.productId
-    WHERE 
+    AND 
         oi.createdAt >= @StartDate OR oi.createdAt IS NULL
     GROUP BY 
         c.categoryName, c.id
