@@ -49,6 +49,11 @@ namespace Dashboard.DataContext
             {
                 entity.HasNoKey();
                 entity.ToView(null); // Treats this entity as a query only
+
+                entity.Property(e => e.Profit)
+                .HasPrecision(18, 2);
+                entity.Property(e => e.Revenue)
+                .HasPrecision(18, 2);
             });
         }
 
