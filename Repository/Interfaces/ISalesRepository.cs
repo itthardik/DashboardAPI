@@ -38,5 +38,11 @@ namespace Dashboard.Repository.Interfaces
         /// <param name="pageSize"></param>
         /// <returns></returns>
         JsonResult GetTopSellingCategoriesByPagination(int pageNumber, int pageSize);
+        
+        /// <summary>
+        /// Get Last 10min Sales
+        /// </summary>
+        /// <returns></returns>
+        JsonResult GetLast10MinSales();
     }
 }

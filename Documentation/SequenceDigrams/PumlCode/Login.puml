@@ -1,0 +1,48 @@
+﻿@startuml
+!theme mars
+actor User
+
+participant Frontend
+participant "Backend Server" as Backend
+participant "MQTT Client (Backend)" as MQTT_Backend
+participant "Mosquitto Broker" as Broker
+participant "MQTT Client (Frontend)" as MQTT_Frontend
+
+User -> Frontend: Submit login credentials
+Frontend -> Backend: Send login request\n(Credentials in headers)
+Backend -> Backend: Validate credentials
+
+alt Credentials valid
+    Backend -> Backend: Generate JWT token and session token
+    Backend -> MQTT_Backend: Check if user exists on broker
+
+    alt User exists on broker
+        MQTT_Backend -> Broker: Send "enable" command
+        MQTT_Backend -> Broker: Reset password to session token
+    else User does not exist
+        MQTT_Backend -> Broker: Create user
+        MQTT_Backend -> Broker: Set password to session token
+        MQTT_Backend -> Broker: Set user roles
+    end
+
+    alt MQTT commands succeed
+        Backend -> Frontend: Send JWT token and session token
+        Frontend -> MQTT_Frontend: Create MQTT client (session token)
+        
+        MQTT_Frontend -> Broker: Connect to broker\n(using session token)
+        
+        alt Connection valid
+            Broker -> MQTT_Frontend: Acknowledge connection (ACK)
+            Frontend -> User: Notify successful login
+        else Connection invalid
+            Broker -> MQTT_Frontend: Send error (401 Unauthorized)
+            Frontend -> User: Notify failed login (Unauthorized)
+        end
+    else MQTT commands fail
+        Backend -> Frontend: Send error message
+    end
+else Credentials invalid
+    Backend -> Frontend: Send error message (401 Unauthorized)
+end
+
+@enduml

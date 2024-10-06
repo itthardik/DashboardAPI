@@ -227,6 +227,12 @@
 --------------------------------------------------------------------------------
 
 
+-- Migration ID: TKT-26
+-- Script Name: 2024-09-27__TKT-26__Create__GetLast10MinutesOrderItems.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-27
+-- Description: This migration creates a stored procedure to retrieve the total sales for the last 10 minutes, grouped by each minute interval.
+-- Status: Applied
 
 ----------------use this template and place migration changes above-------------
 

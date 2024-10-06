@@ -1,0 +1,41 @@
+﻿@startuml
+actor User
+
+participant Frontend
+participant "Backend Server" as Backend
+participant "MQTT Client (Backend)" as MQTT_Backend
+participant "Mosquitto Broker" as Broker
+participant "MQTT Client (Frontend)" as MQTT_Frontend
+
+== Token refresh initiated before expiration ==
+Frontend -> Backend: Send refresh request\n(JWT in headers)
+Backend -> Backend: Validate JWT
+
+alt JWT valid
+    Backend -> Backend: Generate new JWT and session token
+    Backend -> MQTT_Backend: Send reset password command to broker\n(new session token)
+
+    MQTT_Backend -> Broker: Reset password to new session token
+    Broker -> MQTT_Frontend: Disconnect user\n(because password changed)
+
+    alt Password reset succeeds
+        Backend -> Frontend: Send new JWT and session token
+        Frontend -> MQTT_Frontend: Create new MQTT client (new session token)
+        
+        MQTT_Frontend -> Broker: Connect to broker\n(using new session token)
+        
+        alt Connection valid
+            Broker -> MQTT_Frontend: Acknowledge connection (ACK)
+            Frontend -> User: Notify successful reconnect
+        else Connection invalid
+            Broker -> MQTT_Frontend: Send error (401 Unauthorized)
+            Frontend -> User: Notify failed reconnect (Unauthorized)
+        end
+    else Password reset fails
+        Backend -> Frontend: Send error message (Failed to refresh tokens)
+    end
+else JWT invalid
+    Backend -> Frontend: Send error message (401 Unauthorized)
+end
+
+@enduml

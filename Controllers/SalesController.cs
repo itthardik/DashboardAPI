@@ -4,6 +4,7 @@ using Dashboard.Services;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -118,6 +119,29 @@ namespace Dashboard.Controllers
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _salesRepository.GetTopSellingCategoriesByPagination(pageNumber, pageSize);
+                return res;
+            }
+            catch (CustomException ex)
+            {
+                return new JsonResult(ex.ErrorMessage) { StatusCode = ex.StatusCode };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(ex.Message) { StatusCode = 500 };
+            }
+        }
+
+        /// <summary>
+        /// Get ReatimData of last 10 min
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Policy = "SalesAccessPolicy")]
+        [HttpGet("getLast10minSales")]
+        public JsonResult GetRealtimeDateOfLast10Min()
+        {
+            try
+            {
+                var res = _salesRepository.GetLast10MinSales();
                 return res;
             }
             catch (CustomException ex)

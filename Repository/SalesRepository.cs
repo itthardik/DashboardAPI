@@ -89,5 +89,15 @@ namespace Dashboard.Repository
 
             return new JsonResult(new { maxPages, data = topSellingCategoriesByPagination });
         }
+
+        /// <summary>
+        /// Get Last 10min Sales Data
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetLast10MinSales()
+        {
+            var result = _context.TotalSalesSPResponses.FromSqlRaw("Exec GetLast10MinutesOrderItems").ToList();
+            return new JsonResult(new {data = result } );
+        }
     }
 }

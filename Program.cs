@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Dashboard
@@ -37,10 +38,22 @@ namespace Dashboard
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IAlertRepository, AlertRepository>();
             builder.Services.AddScoped<ISalesRepository, SalesRepository>();
+            builder.Services.AddScoped<IFreshdeskRepository, FreshdeskRepository>();
 
             builder.Services.AddTransient<BrokerService>();
 
             builder.Services.AddControllers();
+
+            builder.Services.AddHttpClient<IFreshdeskRepository, FreshdeskRepository>(client =>
+            {
+                client.BaseAddress = new Uri("https://hardikintimetec.freshdesk.com/api/v2/");
+
+                var apiKey = "H4My6Vw9ysW3fFhyowRr";
+                var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:X"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
+
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
 
             builder.Services.AddHangfire(x => x.UseSqlServerStorage(configuration["ConnectionStrings:ApiContext"]));
             builder.Services.AddHangfireServer();
@@ -114,6 +127,9 @@ namespace Dashboard
                     )
                 .AddPolicy("InventoryAccessPolicy", policy =>
                     policy.RequireRole("inventory", "admin")
+                    )
+                .AddPolicy("CustomerSupportAccessPolicy", policy =>
+                    policy.RequireRole("customerSupport", "admin")
                     )
                  .AddPolicy("Inventory&RevenueAccessPolicy", policy =>
                     policy.RequireRole("inventory", "revenue", "admin")
