@@ -1,0 +1,29 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Last 10 Min Sales page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request Last 10 Min Sales Data
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetLast10MinutesOrderItems)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Last 10 Min Sales Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Sales Data (JSON Result)
+
+note right of "React App (Frontend)"
+UI updates:
+- Display sales data from the last 10 minutes
+end note
+
+== Real-Time Updates ==
+
+"Backend (.NET Core API)" -> "MQTT Client (Backend)" : Publish Sales Update (every 1 min)
+"MQTT Client (Backend)" -> "MQTT Broker" : Publish to Sales Topic
+
+"MQTT Broker" -> "MQTT Client (Frontend)" : Send Sales Update Message (every 1 min)
+"MQTT Client (Frontend)" -> "React App (Frontend)" : Update Sales Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Refresh last 10 min sales data in real-time based on received message
+end note
+
+@enduml

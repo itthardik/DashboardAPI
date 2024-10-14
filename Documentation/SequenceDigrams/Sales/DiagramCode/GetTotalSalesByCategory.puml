@@ -1,0 +1,34 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Sales Statistics page (Default: Today)
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request Sales Stats by Category
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetTotalSalesByCategory, DaysBack)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Sales Data by Category
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Sales Data (JSON Result)
+
+note right of "React App (Frontend)"
+UI updates:
+- Display sales statistics by category
+- Show results based on selected number of days
+end note
+
+User -> "React App (Frontend)" : Enable Real-Time Sales Data
+"React App (Frontend)" -> "MQTT Client (Frontend)" : Subscribe to Sales Topic
+"MQTT Client (Frontend)" -> "MQTT Broker" : Subscribe to Sales Topic
+"MQTT Broker" -> "MQTT Client (Frontend)" : Acknowledgment of Subscription
+
+"Backend (.NET Core API)" -> "MQTT Client (Backend)" : Publish Sales Update (Order Placed)
+
+"MQTT Client (Backend)" -> "MQTT Broker" : Publish to Sales Topic
+
+"MQTT Broker" -> "MQTT Client (Frontend)" : Send Sales Update Message
+"MQTT Client (Frontend)" -> "React App (Frontend)" : Update Sales Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Refresh sales data in real-time based on received message
+end note
+
+@enduml

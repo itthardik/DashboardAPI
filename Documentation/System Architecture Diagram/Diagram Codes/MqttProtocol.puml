@@ -1,0 +1,21 @@
+﻿
+@startuml
+!theme mars
+title MQTT Protocol with .NET MQTT Client and Frontend MQTT Clients
+
+rectangle "  Mosquitto Broker\n\n(Manages messages)" as Broker 
+rectangle "   .NET MQTT Client\n\n(Publishes messages)" as Publisher 
+rectangle "    Frontend MQTT Client\n\n(Subscribes to 'inventory')" as Subscriber1 
+rectangle "Frontend MQTT Client\n\n(Subscribes to 'sales')" as Subscriber2 
+rectangle "      Frontend MQTT Client\n\n(Subscribes to 'notifications')" as Subscriber3 
+
+Publisher --> Broker : publish messages
+Subscriber1 --> Broker : subscribe to 'inventory'
+Subscriber2 --> Broker : subscribe to 'sales'
+Subscriber3 --> Broker : subscribe to 'notifications'
+
+Broker --> Subscriber1 : forward 'inventory' messages
+Broker --> Subscriber2 : forward 'sales' messages
+Broker --> Subscriber3 : forward 'notifications' messages
+
+@enduml

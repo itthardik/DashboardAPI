@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dashboard.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Repository.Interfaces
 {
@@ -13,6 +14,6 @@ namespace Dashboard.Repository.Interfaces
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public JsonResult GetAllAlerts(int pageNumber, int pageSize);
+        JsonResult GetAllAlerts(int pageNumber, int pageSize);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Dashboard.DataContext;
+using Dashboard.Models;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Services;
 using Dashboard.Utility;

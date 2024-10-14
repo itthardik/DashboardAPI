@@ -1,0 +1,18 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Overall Sales Statistics page
+"React App (Frontend)" -> "React App (Frontend)" : Set Default Date = Today (Year, Month, Day)
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request Overall Sales Stats (Date = Today)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetOrderItemsByDate, SelectedDate)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Sales Data by Date
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Sales Data (JSON Result)
+
+note right of "React App (Frontend)"
+UI updates:
+- Display overall sales statistics for the selected date
+- Show results based on the specified date
+end note
+
+@enduml

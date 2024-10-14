@@ -18,7 +18,7 @@ namespace Dashboard.Repository
     /// Freshdesk Repo
     /// </summary>
     /// <param name="httpClient"></param>
-    public class FreshdeskRepository(HttpClient httpClient):IFreshdeskRepository
+    public class FreshdeskRepository(HttpClient httpClient, IAlertRepository alertRepository, ISalesRepository salesRepository):IFreshdeskRepository
     {
         private readonly HttpClient _httpClient = httpClient;
 
@@ -121,7 +121,7 @@ namespace Dashboard.Repository
             int neutralFeedbackCount = 0;
             int negativeFeedbackCount = 0;
 
-            int feedbackCount = 0;
+            int feedbackCount;
 
             foreach (var ticket in tickets!)
             {

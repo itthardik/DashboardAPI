@@ -141,15 +141,16 @@ namespace Dashboard.Controllers
             }
 
         }
-        
-        
-        
+
+
+
         /// <summary>
         /// Sign up
         /// </summary>
         /// <param name="requestUser"></param>
         /// <param name="role"></param>
         /// <returns></returns>
+        [Authorize(Policy = "FullAccessPolicy")]
         [HttpPost("signup")]
         public JsonResult SignUp([FromBody] RequestUser requestUser, [FromQuery] string role)
         {

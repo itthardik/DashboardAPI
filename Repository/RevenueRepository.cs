@@ -62,7 +62,7 @@ namespace Dashboard.Repository
 
             var searchValuesByPagination = allSearchValues.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 
-            return new JsonResult(new { maxPages, data = searchValuesByPagination });
+            return new JsonResult(new { maxPages, data = searchValuesByPagination }) { StatusCode = 200 };
         }
 
         /// <summary>

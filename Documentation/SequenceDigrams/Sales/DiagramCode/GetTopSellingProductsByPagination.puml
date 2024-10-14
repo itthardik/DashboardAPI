@@ -1,0 +1,25 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Top Selling Products page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request Top Selling Products (Page Number, Page Size)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetTopSellingProducts)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Top Selling Products Data
+
+alt No Products Found
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Throw CustomException("No Search Values found", 404)
+else Products Found
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Calculate Max Pages
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Paginate Results
+end
+
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Paginated Data (Max Pages, Top Selling Products)
+
+note right of "React App (Frontend)"
+UI updates:
+- Display top selling products for the current page
+- Show pagination information (total pages)
+end note
+
+@enduml

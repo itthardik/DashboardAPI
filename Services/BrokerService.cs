@@ -144,8 +144,8 @@ namespace Dashboard.Services
 
             return new CommandResult
             {
-                Success = true,
-                //Success = process.ExitCode == 0,
+                //Success = true,
+                Success = process.ExitCode == 0,
                 Output = output,
                 Error = error
             };

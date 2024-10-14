@@ -9,6 +9,7 @@ namespace Dashboard.Services
     public class MqttService
     {
         private readonly IMqttClient _mqttClient;
+        private readonly IConfiguration _configuration;
         private readonly Timer _reconnectTimer;
         private bool _isReconnecting;
         private async void CheckConnectionStatus(object state)
@@ -24,7 +25,7 @@ namespace Dashboard.Services
         /// <summary>
         /// mqtt service constructor
         /// </summary>
-        public MqttService()
+        public MqttService(IConfiguration configuration)
         {
             var factory = new MqttFactory();
             _mqttClient = factory.CreateMqttClient();
@@ -32,9 +33,10 @@ namespace Dashboard.Services
             _mqttClient.ConnectedAsync += OnConnectedAsync;
             _mqttClient.DisconnectedAsync += OnDisconnectedAsync;
 
+            _configuration = configuration;
+
             _reconnectTimer = new Timer(CheckConnectionStatus!, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
         }
-
 
         private Task OnConnectedAsync(MqttClientConnectedEventArgs e)
         {
@@ -62,10 +64,10 @@ namespace Dashboard.Services
             {
                 var mqttOptions = new MqttClientOptionsBuilder()
                     .WithClientId("DotNetClient")
-                    .WithCredentials("admin", "admin")
+                    .WithCredentials(_configuration["DotNetMqttClient:Username"], _configuration["DotNetMqttClient:Password"])
                     .WithWebSocketServer(options =>
                     {
-                        options.WithUri("ws://127.0.0.1:9001");
+                        options.WithUri(_configuration["DotNetMqttClient:ConnectionUri"]);
                     })
                     .WithCleanSession(true)
                     .Build();

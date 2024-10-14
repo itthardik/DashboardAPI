@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dashboard.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Repository.Interfaces
 {

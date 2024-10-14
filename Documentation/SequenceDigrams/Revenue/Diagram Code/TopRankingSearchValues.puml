@@ -1,0 +1,30 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Revenue Analysis page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Top Search Values (Default: Page 1)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Query SQL Server for Page 1 of Top 10 Products by Search Ranking
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Page 1 Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Page 1 Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Display top 10 products by search values (Page 1)
+- Include Product ID, Product Name, and Search Count
+- Pagination controls visible for next/previous pages
+end note
+
+User -> "React App (Frontend)" : Navigate to Page 2
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Top Search Values (Page 2)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Query SQL Server for Page 2 of Top Products by Search Ranking
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Page 2 Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Page 2 Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Display top products for Page 2
+- Pagination updated accordingly
+end note
+
+@enduml

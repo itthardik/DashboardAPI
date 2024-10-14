@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dashboard.Models.DTOs.Response;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Repository.Interfaces
 {

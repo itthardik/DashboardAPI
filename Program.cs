@@ -48,7 +48,7 @@ namespace Dashboard
             {
                 client.BaseAddress = new Uri("https://hardikintimetec.freshdesk.com/api/v2/");
 
-                var apiKey = "H4My6Vw9ysW3fFhyowRr";
+                var apiKey = configuration["FreshDesk:ApiKey"];
                 var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:X"));
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
 
@@ -60,7 +60,7 @@ namespace Dashboard
 
             builder.Services.AddSingleton<MqttService>(serviceProvider =>
             {
-                return new MqttService();
+                return new MqttService(configuration);
             });
 
             builder.Services.AddEndpointsApiExplorer();
