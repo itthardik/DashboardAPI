@@ -1,15 +1,9 @@
-﻿using Azure;
-using Dashboard.Models;
-using Dashboard.Models.Dashboard.Models;
+﻿using Dashboard.Models.Dashboard.Models;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Utility;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
-using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace Dashboard.Repository
@@ -18,7 +12,7 @@ namespace Dashboard.Repository
     /// Freshdesk Repo
     /// </summary>
     /// <param name="httpClient"></param>
-    public class FreshdeskRepository(HttpClient httpClient, IAlertRepository alertRepository, ISalesRepository salesRepository):IFreshdeskRepository
+    public class FreshdeskRepository(HttpClient httpClient):IFreshdeskRepository
     {
         private readonly HttpClient _httpClient = httpClient;
 
@@ -219,9 +213,9 @@ namespace Dashboard.Repository
                 },
                 feedbackCategories = new
                 {
-                    positiveFeedbackPercentage= Math.Floor(((double)positiveFeedbackCount / feedbackCount)*100),
-                    neutralFeedbackPercentage = Math.Floor(((double) neutralFeedbackCount / feedbackCount)*100),
-                    negativeFeedbackPercentage = Math.Floor(((double) negativeFeedbackCount / feedbackCount)*100)
+                    positiveFeedbackPercentage= feedbackCount > 0 ? Math.Floor(((double)positiveFeedbackCount / feedbackCount) * 100) : 0,
+                    neutralFeedbackPercentage = feedbackCount > 0 ? Math.Floor(((double)neutralFeedbackCount / feedbackCount) * 100)  : 0,
+                    negativeFeedbackPercentage = feedbackCount > 0 ? Math.Floor(((double)negativeFeedbackCount / feedbackCount) * 100) : 0
                 },
                 averageResponseTime = new
                 {
@@ -236,7 +230,8 @@ namespace Dashboard.Repository
                     averageResolutionTime.Minutes,
                     averageResolutionTime.Seconds
                 }
-            });
+            })
+            { StatusCode = 200};
         }
 
         /// <summary>

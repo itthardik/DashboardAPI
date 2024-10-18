@@ -1,11 +1,8 @@
-﻿using Dashboard.Utility.Validation;
+﻿using Dashboard.Repository.Interfaces;
 using Dashboard.Utility;
-using DocumentFormat.OpenXml.Wordprocessing;
+using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Dashboard.Repository.Interfaces;
-using Dashboard.Repository;
-using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace Dashboard.Controllers
 {
@@ -94,7 +91,6 @@ namespace Dashboard.Controllers
         /// <summary>
         /// Get Overall stats of Customer support
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getOverallStats")]
         [Authorize(Policy = "CustomerSupportAccessPolicy")]
