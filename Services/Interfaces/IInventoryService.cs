@@ -1,12 +1,13 @@
 ﻿using Dashboard.Models;
+using Dashboard.Models.DTOs.Response;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dashboard.Repository.Interfaces
+namespace Dashboard.Services.Interfaces
 {
     /// <summary>
-    /// Inventory Repoistory Interface
+    /// Inventory Service interface
     /// </summary>
-    public interface IInventoryRepository
+    public interface IInventoryService
     {
         /// <summary>
         /// Get Inventory By Pagination
@@ -15,7 +16,7 @@ namespace Dashboard.Repository.Interfaces
         /// <param name="pageSize"></param>
         /// <param name="filterKey"></param>
         /// <returns></returns>
-        JsonResult GetInventoryByPagination(int pageNumber, int pageSize, string filterKey);
+        PaginatedResponse<Product> GetInventoryByPagination(int pageNumber, int pageSize, string filterKey);
 
         /// <summary>
         /// Add Inventory By Product Id
@@ -24,7 +25,6 @@ namespace Dashboard.Repository.Interfaces
         /// <param name="stockRequire"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-         Task<JsonResult> AddInventoryByProductId(int productId, int stockRequire, string token);
-
+        Task<Product> AddInventoryByProductId(int productId, int stockRequire, string token);
     }
 }

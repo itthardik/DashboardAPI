@@ -1,5 +1,5 @@
-﻿using Dashboard.Models.DTOs.Response;
-using Microsoft.AspNetCore.Mvc;
+﻿using Dashboard.Models;
+using Dashboard.Models.DTOs.Response;
 
 namespace Dashboard.Repository.Interfaces
 {
@@ -8,33 +8,16 @@ namespace Dashboard.Repository.Interfaces
     /// </summary>
     public interface IRevenueRepository
     {
-
-        /// <summary>
-        /// Get Product by product id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        JsonResult GetProductCostById(int id);
-
-        /// <summary>
-        /// Get Product by product name
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        JsonResult GetProductCostByName(string name);
-
         /// <summary>
         /// Get Top search value by page and page size
         /// </summary>
-        /// <param name="pageNumber"></param>
-        /// <param name="pageSize"></param>
         /// <returns></returns>
-        JsonResult GetAllSearchValuesByPagination(int pageNumber, int pageSize);
+        IOrderedQueryable<CustomerSearch> GetAllOrderedSearchValues();
         /// <summary>
         /// Get Revenue Stats Based On Days
         /// </summary>
         /// <param name="days"></param>
         /// <returns></returns>
-        JsonResult GetRevenueStatsBasedOnDays(int days);
+        List<RevenueSPResponse> GetRevenueStatsBasedOnDays(int days);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Dashboard.Repository.Interfaces;
+using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
@@ -11,9 +12,9 @@ namespace Dashboard.Controllers
     /// </summary>
     [Route("api/revenue")]
     [ApiController]
-    public class RevenueController(IRevenueRepository revenueRepository) : Controller
+    public class RevenueController(IRevenueService revenueService) : Controller
     {
-        private readonly IRevenueRepository _revenueRepository = revenueRepository;
+        private readonly IRevenueService _revenueService = revenueService;
 
         /// <summary>
         /// Get product from id or name
@@ -30,13 +31,13 @@ namespace Dashboard.Controllers
             {
                 if (id != null)
                 {
-                    var result = _revenueRepository.GetProductCostById(id ?? 0);
-                    return result;
+                    var result = _revenueService.GetProductCostById(id ?? 0);
+                    return new JsonResult(new { data = result }) { StatusCode = 200 };
                 }
                 else if (name != null)
                 {
-                    var result = _revenueRepository.GetProductCostByName(name);
-                    return result;
+                    var result = _revenueService.GetProductCostByName(name);
+                    return new JsonResult(new { data = result }) { StatusCode = 200 };
                 }
                 throw new CustomException("Id or Name is required", 400);
             }
@@ -64,8 +65,9 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = _revenueRepository.GetAllSearchValuesByPagination(pageNumber, pageSize);
-                return res;
+                var res = _revenueService.GetAllSearchValuesByPagination(pageNumber, pageSize);
+
+                return new JsonResult(res) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {
@@ -88,16 +90,9 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var getDays = new Dictionary<string, int> {
-                    { "today", 0 },
-                    { "last3days", 3 },
-                    { "lastweek", 7 },
-                    { "lastmonth", 30 },
-                    { "last3months", 90 },
-                    { "last6months", 180 },
-                    { "lastyear", 360}};
-                var res = _revenueRepository.GetRevenueStatsBasedOnDays(getDays[days]);
-                return res;
+                var res = _revenueService.GetRevenueStatsBasedOnDays(days);
+
+                return new JsonResult(new { data = res }) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {

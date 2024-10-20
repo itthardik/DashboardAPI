@@ -1,18 +1,18 @@
 ﻿using Dashboard.Models.Dashboard.Models;
-using Dashboard.Repository.Interfaces;
+using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json.Nodes;
 
-namespace Dashboard.Repository
+namespace Dashboard.Services
 {
     /// <summary>
     /// Freshdesk Repo
     /// </summary>
     /// <param name="httpClient"></param>
-    public class FreshdeskRepository(HttpClient httpClient):IFreshdeskRepository
+    public class FreshdeskService(HttpClient httpClient) : IFreshdeskService
     {
         private readonly HttpClient _httpClient = httpClient;
 
@@ -35,7 +35,7 @@ namespace Dashboard.Repository
             if (!response.IsSuccessStatusCode)
                 throw new CustomException(responseData, (int)response.StatusCode);
 
-            return new JsonResult(new { data = JsonObject.Parse(responseData), isNextPage });
+            return new JsonResult(new { data = JsonNode.Parse(responseData), isNextPage });
 
         }
 
@@ -59,7 +59,7 @@ namespace Dashboard.Repository
             if (!response.IsSuccessStatusCode)
                 throw new CustomException(responseData, (int)response.StatusCode);
 
-            return new JsonResult(JsonObject.Parse(responseData));
+            return new JsonResult(JsonNode.Parse(responseData));
 
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace Dashboard.Repository
             if (!response.IsSuccessStatusCode)
                 throw new CustomException(responseData, (int)response.StatusCode);
 
-            return new JsonResult(new { data = JsonObject.Parse(responseData) });
+            return new JsonResult(new { data = JsonNode.Parse(responseData) });
 
         }
 
@@ -158,7 +158,7 @@ namespace Dashboard.Repository
                         var responseTime = firstRespondedAt - createdAt;
 
                         totalResponseTime += responseTime;
-                        responseTimeCount++; 
+                        responseTimeCount++;
                     }
                 }
                 if (ticket?.Stats?.ResolvedAt != null && ticket.CreatedAt != null)
@@ -213,9 +213,9 @@ namespace Dashboard.Repository
                 },
                 feedbackCategories = new
                 {
-                    positiveFeedbackPercentage= feedbackCount > 0 ? Math.Floor(((double)positiveFeedbackCount / feedbackCount) * 100) : 0,
-                    neutralFeedbackPercentage = feedbackCount > 0 ? Math.Floor(((double)neutralFeedbackCount / feedbackCount) * 100)  : 0,
-                    negativeFeedbackPercentage = feedbackCount > 0 ? Math.Floor(((double)negativeFeedbackCount / feedbackCount) * 100) : 0
+                    positiveFeedbackPercentage = feedbackCount > 0 ? Math.Floor((double)positiveFeedbackCount / feedbackCount * 100) : 0,
+                    neutralFeedbackPercentage = feedbackCount > 0 ? Math.Floor((double)neutralFeedbackCount / feedbackCount * 100) : 0,
+                    negativeFeedbackPercentage = feedbackCount > 0 ? Math.Floor((double)negativeFeedbackCount / feedbackCount * 100) : 0
                 },
                 averageResponseTime = new
                 {
@@ -231,7 +231,7 @@ namespace Dashboard.Repository
                     averageResolutionTime.Seconds
                 }
             })
-            { StatusCode = 200};
+            { StatusCode = 200 };
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Dashboard.Repository
         public async Task AddMultipleTickets()
         {
 
-            List<Object> tickets1 =
+            List<object> tickets1 =
             [
                 new
                 {

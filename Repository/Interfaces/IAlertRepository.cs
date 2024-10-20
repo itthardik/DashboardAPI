@@ -1,5 +1,6 @@
 ﻿using Dashboard.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Dashboard.Repository.Interfaces
 {
@@ -11,9 +12,25 @@ namespace Dashboard.Repository.Interfaces
         /// <summary>
         /// Get All Repos
         /// </summary>
-        /// <param name="pageNumber"></param>
-        /// <param name="pageSize"></param>
         /// <returns></returns>
-        JsonResult GetAllAlerts(int pageNumber, int pageSize);
+        IIncludableQueryable<Alert, Product> GetAllAlerts();
+
+        /// <summary>
+        /// Get Alert By product Id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        List<Alert> GetAlertByProductId(int productId);
+
+        /// <summary>
+        /// Add Alert
+        /// </summary>
+        /// <param name="alert"></param>
+        void AddAlert(Alert alert);
+
+        /// <summary>
+        /// Saves all changes made to the repository.
+        /// </summary>
+        void Save();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Dashboard.Models.DTOs.Request;
+﻿using Dashboard.Models;
+using Dashboard.Models.DTOs.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Repository.Interfaces
@@ -9,10 +10,17 @@ namespace Dashboard.Repository.Interfaces
     public interface IOrderRepository
     {
         /// <summary>
-        /// Place new Order
+        /// Add Empty Order
         /// </summary>
-        /// <param name="orderItems"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        public Task<JsonResult> PlaceOrder(List<RequestOrderItem> orderItems);
+        Order AddEmptyOrder(int userId);
+
+        /// <summary>
+        /// Add Order Item
+        /// </summary>
+        /// <param name="orderItem"></param>
+        void AddOrderItem(OrderItem orderItem);
+        
     }
 }

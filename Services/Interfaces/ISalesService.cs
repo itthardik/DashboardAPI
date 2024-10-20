@@ -1,19 +1,19 @@
 ﻿using Dashboard.Models;
 using Dashboard.Models.DTOs.Response;
 
-namespace Dashboard.Repository.Interfaces
+namespace Dashboard.Services.Interfaces
 {
     /// <summary>
-    /// Interface for Sales Respository
+    /// Sales Service
     /// </summary>
-    public interface ISalesRepository
+    public interface ISalesService
     {
         /// <summary>
         /// Get Sales Stats By Category Based On Days
         /// </summary>
         /// <param name="days"></param>
         /// <returns></returns>
-        List<SalesByCategorySPResponse> GetSalesStatsByCategoryBasedOnDays(int days);
+        List<SalesByCategorySPResponse> GetSalesStatsByCategoryBasedOnDays(string days);
 
         /// <summary>
         /// Get Overall Sales Stats Based On Days
@@ -27,14 +27,18 @@ namespace Dashboard.Repository.Interfaces
         /// <summary>
         /// Get Top Selling Products By Pagination
         /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        List<TopSellingProductsSPResponse> GetTopSellingProducts();
+        PaginatedResponse<TopSellingProductsSPResponse> GetTopSellingProductsByPagination(int pageNumber, int pageSize);
 
         /// <summary>
         /// Get Top Selling Categories By Pagination
         /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        List<TopSellingProductsSPResponse> GetTopSellingCategories();
+        PaginatedResponse<TopSellingProductsSPResponse> GetTopSellingCategoriesByPagination(int pageNumber, int pageSize);
 
         /// <summary>
         /// Get Last 10min Sales

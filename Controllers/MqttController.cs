@@ -13,6 +13,7 @@ namespace Dashboard.Controllers
     /// <param name="mqttService"></param>
     [ApiController]
     [Route("api/[controller]")]
+    //[ApiExplorerSettings(IgnoreApi = true)]
     public class MqttController(MqttService mqttService) : ControllerBase
     {
         private readonly MqttService _mqttService = mqttService;

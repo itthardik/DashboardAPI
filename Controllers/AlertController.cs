@@ -1,20 +1,23 @@
 ﻿using Dashboard.Repository.Interfaces;
+using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Dashboard.Controllers
 {
     /// <summary>
     /// Alert Controller
     /// </summary>
-    /// <param name="alertRepository"></param>
+    /// <param name="alertService"></param>
     [Route("api/alert")]
     [ApiController]
-    public class AlertController(IAlertRepository alertRepository) : ControllerBase
+    public class AlertController(IAlertService alertService) : ControllerBase
     {
-        private readonly IAlertRepository _alertRepository = alertRepository;
+        private readonly IAlertService _alertService = alertService;
 
         /// <summary>
         /// Get alerts by pages
@@ -29,8 +32,8 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = _alertRepository.GetAllAlerts(pageNumber, pageSize);
-                return res;
+                var res = _alertService.GetAllAlerts(pageNumber, pageSize);
+                return new JsonResult(res, new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.IgnoreCycles }) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {

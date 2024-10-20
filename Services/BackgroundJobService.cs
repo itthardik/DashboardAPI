@@ -3,6 +3,7 @@ using Dashboard.DataContext;
 using Dashboard.Models;
 using Dashboard.Models.DTOs.Request;
 using Dashboard.Repository.Interfaces;
+using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -15,12 +16,12 @@ namespace Dashboard.Services
     /// </summary>
     /// <param name="context"></param>
     /// <param name="mqttService"></param>
-    /// <param name="orderRepository"></param>
-    public class BackgroundJobService(ApiContext context, MqttService mqttService, IOrderRepository orderRepository)
+    /// <param name="orderService"></param>
+    public class BackgroundJobService(ApiContext context, MqttService mqttService, IOrderService orderService)
     {
         private readonly ApiContext _context = context;
         private readonly MqttService _mqttService = mqttService;
-        private readonly IOrderRepository _orderRepository = orderRepository;
+        private readonly IOrderService _orderService = orderService;
         private readonly User systemUser = new()
         {
             Username = "H&M_System",
@@ -111,7 +112,7 @@ namespace Dashboard.Services
             {
                 var productId = (int)worksheet.Cell(row, 1).GetDouble();
                 var quantity = (int)worksheet.Cell(row, 2).GetDouble();
-                var res = await _orderRepository.PlaceOrder([ new() { ProductId = productId, Quantity = quantity } ]);
+                await _orderService.PlaceOrder([ new() { ProductId = productId, Quantity = quantity } ]);
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Dashboard.Repository.Interfaces
+namespace Dashboard.Services.Interfaces
 {
     /// <summary>
-    /// Freshdesk Repo interface
+    /// Freshdesk Service interface
     /// </summary>
-    public interface IFreshdeskRepository
+    public interface IFreshdeskService
     {
         /// <summary>
         /// Get All Tickets with pagination

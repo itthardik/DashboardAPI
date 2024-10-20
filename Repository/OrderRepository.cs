@@ -14,80 +14,31 @@ namespace Dashboard.Repository
     /// Order Repo
     /// </summary>
     /// <param name="context"></param>
-    /// <param name="mqttService"></param>
-    public class OrderRepository(ApiContext context, MqttService mqttService) : IOrderRepository
+    public class OrderRepository(ApiContext context) : IOrderRepository
     {
-        private readonly ApiContext _context= context;
-        private readonly MqttService _mqttService = mqttService;
+        private readonly ApiContext _context = context;
 
         /// <summary>
-        /// Place new Order
+        /// Add Empty Order
         /// </summary>
-        /// <param name="orderItems"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        /// <exception cref="CustomException"></exception>
-        public async Task<JsonResult> PlaceOrder(List<RequestOrderItem> orderItems)
+        public Order AddEmptyOrder( int userId)
         {
-            Order newOrder = new (){UserId=3,TotalPrice=0, Status = "Pending"};
+            Order newOrder = new() { UserId = userId, TotalPrice = 0, Status = "Pending" };
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
+            return newOrder;
+        }
 
-            foreach (var i in orderItems)
-            {
-
-                var product = _context.Products.Find(i.ProductId) ?? throw new CustomException($"No product ( ID:{i.ProductId} ) found", 404);
-
-                if (product.CurrentStock - i.Quantity < 0)
-                    throw new CustomException($"No Stock of product ( ID:{i.ProductId} )", 404);
-                else
-                {
-                    product.CurrentStock -= i.Quantity;
-                    product.UpdatedAt = DateTime.UtcNow;
-                    if (product.CurrentStock <= product.ReorderPoint)
-                    {
-                        var alert = _context.Alerts.Where((i) => i.ProductId == product.Id).ToList();
-
-                        if (alert.IsNullOrEmpty())
-                        {
-                            alert.Add( new() { AlertLevel = 1, ProductId = product.Id });
-                            _context.Alerts.Add(alert[0]);
-                        }
-                        else
-                        {
-                            if (alert[0].Status == "Pending")
-                                alert[0].AlertLevel++;
-                            else
-                            {
-                                alert[0].Status = "Pending";
-                                alert[0].AlertLevel = 1;
-                            }
-                            alert[0].NotifiedAt = DateTime.UtcNow;
-                        }
-                        _context.SaveChanges();
-                        await _mqttService.PublishAsync("inventory/notificationAlert", JsonConvert.SerializeObject(alert[0],new JsonSerializerSettings (){ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
-                    }
-                }
-                var orderDiscount = (new Random().Next(0, 30) / 100) * product.SellingPrice;
-
-                OrderItem item = new()
-                {
-                    ProductId = i.ProductId,
-                    OrderId = newOrder.Id,
-                    Quantity = i.Quantity,
-                    Price = product.SellingPrice * i.Quantity,
-                    Discount = orderDiscount * i.Quantity,
-                    Status = "Pending"
-                };
-                newOrder.TotalPrice += item.Price - (decimal)item.Discount;
-                _context.OrderItems.Add(item);
-                _context.SaveChanges();
-
-                await _mqttService.PublishAsync("sales/salesByCategory", JsonConvert.SerializeObject(new {product.CategoryId, i.Quantity}));
-            }
-
-            await _mqttService.PublishAsync("inventory/orderItems", JsonConvert.SerializeObject(orderItems));
-
-            return new JsonResult("Order Placed Successfully") { StatusCode=200};
+        /// <summary>
+        /// Add Order Item
+        /// </summary>
+        /// <param name="orderItem"></param>
+        public void AddOrderItem(OrderItem orderItem)
+        {
+            _context.OrderItems.Add(orderItem);
+            _context.SaveChanges();
         }
     }
 }

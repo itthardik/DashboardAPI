@@ -1,15 +1,5 @@
-
-using Dashboard.DataContext;
-using Dashboard.Repository;
-using Dashboard.Repository.Interfaces;
+using Dashboard.ServiceConfiguration;
 using Dashboard.Services;
-using Hangfire;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Net.Http.Headers;
-using System.Text;
 
 namespace Dashboard
 {
@@ -21,126 +11,25 @@ namespace Dashboard
         /// <summary>
         /// Main Endpoint
         /// </summary>
-        /// <param name="args"></param>
-        /// <exception cref="InvalidOperationException"></exception>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            IConfiguration configuration = builder.Configuration;
 
-            // Add services to the container.
-            builder.Services.AddDbContext<ApiContext>(options =>
-                options.UseSqlServer(configuration["ConnectionStrings:ApiContext"] ));
-
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IRevenueRepository, RevenueRepository>();
-            builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
-            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-            builder.Services.AddScoped<IAlertRepository, AlertRepository>();
-            builder.Services.AddScoped<ISalesRepository, SalesRepository>();
-            builder.Services.AddScoped<IFreshdeskRepository, FreshdeskRepository>();
-
-            builder.Services.AddTransient<BrokerService>();
-
+            builder.Services.AddDatabaseContexts(builder.Configuration);
+            builder.Services.AddRepositories();
+            builder.Services.AddAppServices(builder.Configuration);
+            builder.Services.AddHttpClients(builder.Configuration);
+            builder.Services.AddHangfireServices(builder.Configuration);
             builder.Services.AddControllers();
-
-            builder.Services.AddHttpClient<IFreshdeskRepository, FreshdeskRepository>(client =>
-            {
-                client.BaseAddress = new Uri("https://hardikintimetec.freshdesk.com/api/v2/");
-
-                var apiKey = configuration["FreshDesk:ApiKey"];
-                var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:X"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
-
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
-            });
-
-            builder.Services.AddHangfire(x => x.UseSqlServerStorage(configuration["ConnectionStrings:ApiContext"]));
-            builder.Services.AddHangfireServer();
-
-            builder.Services.AddSingleton<MqttService>(serviceProvider =>
-            {
-                return new MqttService(configuration);
-            });
-
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dashboard API", Version = "v1" });
-
-                var xmlFile = "dashboard.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
-
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowReactApp",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod()
-                               .AllowCredentials();
-                    });
-            });
-
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Secret"] ?? throw new InvalidOperationException("JWT 'Secret' not found."))),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
-            };
-
-            options.Events = new JwtBearerEvents
-            {
-                OnMessageReceived = context =>
-                {
-                    var token = context.Request.Cookies["jwtToken"];
-                    if (!string.IsNullOrEmpty(token))
-                    {
-                        context.Token = token;
-                    }
-
-                    return Task.CompletedTask;
-                }
-            };
-            });
-            builder.Services.AddAuthorizationBuilder()
-                .AddPolicy("FullAccessPolicy", policy =>
-                    policy.RequireRole("admin"))
-                .AddPolicy("SalesAccessPolicy", policy =>
-                    policy.RequireRole("sales", "admin")
-                    )
-                .AddPolicy("RevenueAccessPolicy", policy =>
-                    policy.RequireRole("revenue", "admin")
-                    )
-                .AddPolicy("InventoryAccessPolicy", policy =>
-                    policy.RequireRole("inventory", "admin")
-                    )
-                .AddPolicy("CustomerSupportAccessPolicy", policy =>
-                    policy.RequireRole("customerSupport", "admin")
-                    )
-                 .AddPolicy("Inventory&RevenueAccessPolicy", policy =>
-                    policy.RequireRole("inventory", "revenue", "admin")
-                    );
+            builder.Services.AddCustomSwagger();
+            builder.Services.AddCustomCors();
+            builder.Services.AddCustomAuth(builder.Configuration);
 
 
             var app = builder.Build();
 
-            app.UseCors("AllowReactApp");
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -150,47 +39,21 @@ namespace Dashboard
                 });
             }
 
+            app.UseCors("AllowReactApp");
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCustomHangfireJobs();
+            app.MapControllers();
 
             var mqttService = app.Services.GetRequiredService<MqttService>();
-
             Task.Run(async () =>
             {
                 await mqttService.ConnectAsync();
             }).GetAwaiter().GetResult();
 
-
-            app.MapControllers();
-
-            app.UseHangfireDashboard();
-
-            RecurringJob.AddOrUpdate<BackgroundJobService>(
-                "midnight-restock-job",
-                service => service.RestockBasedOnNotification(),
-                Cron.Daily);
-            RecurringJob.AddOrUpdate<BackgroundJobService>(
-                "avg-daily-usage-update-job",
-                service => service.UpdateAverageDailyUsageAndReorderPointForAllProducts(),
-                Cron.Daily);
-            RecurringJob.AddOrUpdate<BackgroundJobService>(
-                "get-overall-sales-each-5sec",
-                service => service.GetTotalOrderInLast60Sec(),
-                Cron.Minutely);
-
-            app.MapPost("/start-job", (IBackgroundJobClient backgroundJobClient) =>
-            {
-                string excelFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Orders.xlsx");
-
-                backgroundJobClient.Enqueue<BackgroundJobService>(service =>
-                    service.ProcessExcelAndPlaceOrders(excelFilePath));
-
-                return Results.Ok("Job has been enqueued.");
-            });
-
             app.Run();
         }
     }
 }
+

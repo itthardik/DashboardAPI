@@ -1,12 +1,7 @@
-﻿using Dashboard.Repository;
-using Dashboard.Repository.Interfaces;
-using Dashboard.Services;
+﻿using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dashboard.Controllers
@@ -14,12 +9,12 @@ namespace Dashboard.Controllers
     /// <summary>
     /// Sales Controller
     /// </summary>
-    /// <param name="salesRepository"></param>
+    /// <param name="salesService"></param>
     [Route("api/sales")]
     [ApiController]
-    public class SalesController(ISalesRepository salesRepository) : ControllerBase
+    public class SalesController(ISalesService salesService) : ControllerBase
     {
-        private readonly ISalesRepository _salesRepository = salesRepository;
+        private readonly ISalesService _salesService = salesService;
 
         /// <summary>
         /// Get Sales by Category
@@ -32,16 +27,8 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var getDays = new Dictionary<string, int> {
-                    { "today", 0 },
-                    { "last3days", 3 },
-                    { "lastweek", 7 },
-                    { "lastmonth", 30 },
-                    { "last3months", 90 },
-                    { "last6months", 180 },
-                    { "lastyear", 360}};
-                var res = _salesRepository.GetSalesStatsByCategoryBasedOnDays(getDays[days]);
-                return res;
+                var res = _salesService.GetSalesStatsByCategoryBasedOnDays(days);
+                return new JsonResult(new { data = res}) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {
@@ -66,8 +53,8 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var res = _salesRepository.GetOverallSalesStatsBasedOnDays(year, month, day);
-                return res;
+                var res = _salesService.GetOverallSalesStatsBasedOnDays(year, month, day);
+                return new JsonResult(new { data = res }) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {
@@ -92,8 +79,8 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = _salesRepository.GetTopSellingProductsByPagination(pageNumber, pageSize);
-                return res;
+                var res = _salesService.GetTopSellingProductsByPagination(pageNumber, pageSize);
+                return new JsonResult(res) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {
@@ -118,8 +105,8 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = _salesRepository.GetTopSellingCategoriesByPagination(pageNumber, pageSize);
-                return res;
+                var res = _salesService.GetTopSellingCategoriesByPagination(pageNumber, pageSize);
+                return new JsonResult(res) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {
@@ -141,8 +128,8 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var res = _salesRepository.GetLast10MinSales();
-                return res;
+                var res = _salesService.GetLast10MinSales();
+                return new JsonResult(new { data = res }) { StatusCode = 200 };
             }
             catch (CustomException ex)
             {

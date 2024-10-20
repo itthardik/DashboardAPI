@@ -7,18 +7,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.ComponentModel.DataAnnotations;
+using Dashboard.Services.Interfaces;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Dashboard.Controllers
 {
     /// <summary>
     /// Inventory Controller
     /// </summary>
-    /// <param name="inventoryRepository"></param>
+    /// <param name="inventoryService"></param>
     [Route("api/inventory")]
     [ApiController]
-    public class InventoryController(IInventoryRepository inventoryRepository) : Controller
+    public class InventoryController(IInventoryService inventoryService) : Controller
     {
-        private readonly IInventoryRepository _inventoryRepository = inventoryRepository;
+        private readonly IInventoryService _inventoryService = inventoryService;
 
         /// <summary>
         /// Get Product / Inventory By Pagination and FilterKey
@@ -33,8 +36,8 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = _inventoryRepository.GetInventoryByPagination(pageNumber, pageSize, filterKey);
-                return res;
+                var res = _inventoryService.GetInventoryByPagination(pageNumber, pageSize, filterKey);
+                return new JsonResult(res) { StatusCode = 200};
             }
             catch (CustomException ex)
             {
@@ -65,8 +68,13 @@ namespace Dashboard.Controllers
                 if (string.IsNullOrEmpty(token))
                     throw new CustomException("Token not found", 404);
 
-                var res = await _inventoryRepository.AddInventoryByProductId(productId, stockRequire, token);
-                return res;
+                var res = await _inventoryService.AddInventoryByProductId(productId, stockRequire, token);
+                return new JsonResult(new { data = res },
+                    new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve,
+                    })
+                { StatusCode = 200 };
             }
             catch (CustomException ex)
             {

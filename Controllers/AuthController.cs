@@ -48,20 +48,21 @@ namespace Dashboard.Controllers
         /// <summary>
         /// Login route
         /// </summary>
-        /// <param name="requestUser"></param>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
         /// <returns></returns>
         [HttpPost("login")]
-        public async Task<JsonResult> Login([FromHeader] RequestUser requestUser)
+        public async Task<JsonResult> Login([FromHeader] string Username, [FromHeader] string Password)
         {
             try
             {
                 // Find the user by username
-                var user = _userRepository.GetUserByUserName(requestUser.Username!);
+                var user = _userRepository.GetUserByUserName(Username!);
 
                 // Get the stored hashed password
                 var hashedPassword = user.Password;
                 // Hash the input password for comparison
-                var hashedInputPassword = GetHashedPassword(requestUser.Password!);
+                var hashedInputPassword = GetHashedPassword(Password!);
 
                 // Check if the hashed passwords match
                 if (hashedInputPassword != hashedPassword)
@@ -71,7 +72,7 @@ namespace Dashboard.Controllers
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, requestUser.Username!),
+                    new Claim(ClaimTypes.Name, Username!),
                     new Claim(ClaimTypes.Role, user.Role!)
                 };
 
@@ -102,7 +103,7 @@ namespace Dashboard.Controllers
                 _userRepository.Save();
 
                 // Notify the broker service of the successful login
-                await _brokerService.LoginUser(requestUser.Username!, user.SessionToken!, user.Role!);
+                await _brokerService.LoginUser(Username!, user.SessionToken!, user.Role!);
 
                 // Set options for the session token cookie
                 var sessionCookieOptions = new CookieOptions
@@ -117,7 +118,7 @@ namespace Dashboard.Controllers
                 // Prepare the response data
                 var response = new LoginResponse()
                 {
-                    Username = requestUser.Username!,
+                    Username = Username!,
                     Role = user.Role!,
                     TokenExpirationTime = user.TokenExpirationTime,
                     SessionToken = user.SessionToken!,

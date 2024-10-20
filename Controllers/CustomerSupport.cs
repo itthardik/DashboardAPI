@@ -1,4 +1,4 @@
-﻿using Dashboard.Repository.Interfaces;
+﻿using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
@@ -11,9 +11,9 @@ namespace Dashboard.Controllers
     /// </summary>
     [ApiController]
     [Route("api/customerSupport")]
-    public class CustomerSupport(IFreshdeskRepository freshdeskRepository) : Controller
+    public class CustomerSupport(IFreshdeskService freshdeskService) : Controller
     {
-        private readonly IFreshdeskRepository _freshdeskRepository = freshdeskRepository;
+        private readonly IFreshdeskService _freshdeskService = freshdeskService;
 
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Dashboard.Controllers
             try
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
-                var res = await _freshdeskRepository.GetAllTickets(pageNumber, pageSize, orderBy, orderType);
+                var res = await _freshdeskService.GetAllTickets(pageNumber, pageSize, orderBy, orderType);
                 return res;
             }
             catch (CustomException ex)
@@ -51,7 +51,7 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var res = await _freshdeskRepository.GetTicketsByQuery(query);
+                var res = await _freshdeskService.GetTicketsByQuery(query);
                 return res;
             }
             catch (CustomException ex)
@@ -75,7 +75,7 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var res = await _freshdeskRepository.GetTicketById(id);
+                var res = await _freshdeskService.GetTicketById(id);
                 return res;
             }
             catch (CustomException ex)
@@ -98,7 +98,7 @@ namespace Dashboard.Controllers
         {
             try
             {
-                var res = await _freshdeskRepository.GetOverallStats();
+                var res = await _freshdeskService.GetOverallStats();
                 return res;
             }
             catch (CustomException ex)
@@ -119,7 +119,7 @@ namespace Dashboard.Controllers
         [Authorize(Policy = "CustomerSupportAccessPolicy")]
         public async Task AddMultipleTickets()
         {
-            await _freshdeskRepository.AddMultipleTickets();
+            await _freshdeskService.AddMultipleTickets();
         }
     }
 }

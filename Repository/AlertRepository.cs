@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Dashboard.Repository
 {
@@ -23,23 +24,42 @@ namespace Dashboard.Repository
         /// <summary>
         /// Get All Alerts
         /// </summary>
-        /// <param name="pageNumber"></param>
-        /// <param name="pageSize"></param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
-        public JsonResult GetAllAlerts(int pageNumber, int pageSize)
+        public IIncludableQueryable<Alert, Product> GetAllAlerts()
         {
-            var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderBy(alert => alert.AlertLevel).Include(a=>a.Product);
+            var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderBy(alert => alert.AlertLevel).Include(a => a.Product);
             if (allAlerts.IsNullOrEmpty())
                 throw new CustomException("No Inventory Alerts found", 200);
+            return allAlerts;
+        }
 
-            var maxPages = (int)Math.Ceiling((decimal)(allAlerts.Count()) / pageSize);
+        /// <summary>
+        /// Get alert by id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public List<Alert> GetAlertByProductId(int productId)
+        {
+            return [.. _context.Alerts.Where(alert => alert.ProductId == productId)];
+        }
 
-            var alertsByPagination = allAlerts.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+        /// <summary>
+        /// Add Alerts
+        /// </summary>
+        /// <param name="alert"></param>
+        public void AddAlert(Alert alert)
+        {
+            _context.Alerts.Add(alert);
+            _context.SaveChanges();
+        }
 
-            return new JsonResult(new { maxPages, data = alertsByPagination.ToList() },
-                                        new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.IgnoreCycles }
-                                    ) { StatusCode = 200 };
+        /// <summary>
+        /// Saves all changes made to the repository.
+        /// </summary>
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }
