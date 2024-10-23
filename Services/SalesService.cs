@@ -3,13 +3,14 @@ using Dashboard.Models.DTOs.Response;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
+using Microsoft.Extensions.Configuration;
 
 namespace Dashboard.Services
 {
     /// <summary>
     /// Sales Service
     /// </summary>
-    public class SalesService(ISalesRepository salesRepository) : ISalesService
+    public class SalesService(ISalesRepository salesRepository, IConfiguration configuration) : ISalesService
     {
 
         private readonly ISalesRepository _salesRepository = salesRepository;
@@ -21,15 +22,12 @@ namespace Dashboard.Services
         /// <returns></returns>
         public List<SalesByCategorySPResponse> GetSalesStatsByCategoryBasedOnDays(string days)
         {
-            var getDays = new Dictionary<string, int> {
-                    { "today", 0 },
-                    { "last3days", 3 },
-                    { "lastweek", 7 },
-                    { "lastmonth", 30 },
-                    { "last3months", 90 },
-                    { "last6months", 180 },
-                    { "lastyear", 360}};
-            var result = _salesRepository.GetSalesStatsByCategoryBasedOnDays(getDays[days]);
+            var getDays = configuration.GetSection("DaysSettings").Get<Dictionary<string, int>>();
+
+            if (getDays == null || !getDays.TryGetValue(days, out int value))
+                throw new CustomException("Invalid period");
+
+            var result = _salesRepository.GetSalesStatsByCategoryBasedOnDays(value);
             return result;
         }
 

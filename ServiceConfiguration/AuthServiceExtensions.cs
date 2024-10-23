@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Dashboard.Utility;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -38,6 +39,7 @@ namespace Dashboard.ServiceConfiguration
                 {
                     OnMessageReceived = context =>
                     {
+                        Console.WriteLine("\n"+ context.Request.Cookies + "\n");
                         var token = context.Request.Cookies["jwtToken"];
                         if (!string.IsNullOrEmpty(token))
                         {

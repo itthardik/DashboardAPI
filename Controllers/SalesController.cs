@@ -36,7 +36,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
 
@@ -62,7 +62,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
         
@@ -78,6 +78,7 @@ namespace Dashboard.Controllers
         {
             try
             {
+                //throw new NotImplementedException();
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _salesService.GetTopSellingProductsByPagination(pageNumber, pageSize);
                 return new JsonResult(res) { StatusCode = 200 };
@@ -88,7 +89,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
         
@@ -114,7 +115,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
 
@@ -137,7 +138,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
     }

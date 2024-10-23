@@ -3,6 +3,7 @@ using Dashboard.Models;
 using Dashboard.Models.DTOs.Response;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Utility;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -24,7 +25,7 @@ namespace Dashboard.Repository
         public List<SalesByCategorySPResponse> GetSalesStatsByCategoryBasedOnDays(int days)
         {
             var result = _context.SalesByCategorySPResponses
-            .FromSqlRaw("EXEC GetTotalSalesByCategory @DaysBack = {0}", days)
+            .FromSqlRaw("EXEC GetTotalSalesByCategory @DaysBack", new SqlParameter("@DaysBack",days))
             .ToList();
 
             return result;
@@ -40,7 +41,7 @@ namespace Dashboard.Repository
         public List<OrderItem> GetOverallSalesStatsBasedOnDays(int year, int month, int day)
         {
             var result = _context.OrderItems
-                .FromSqlRaw("Exec GetOrderItemsByDate @SelectedDate = {0}", new DateTime(year, month, day))
+                .FromSqlRaw("Exec GetOrderItemsByDate @SelectedDate", new SqlParameter("@SelectedDate",new DateTime(year, month, day)))
                 .ToList();
 
             return result;

@@ -44,7 +44,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
 
@@ -62,7 +62,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using Dashboard.Repository.Interfaces;
-using Dashboard.Services.Interfaces;
+﻿using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +40,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
             }
         }
     }

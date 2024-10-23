@@ -20,6 +20,8 @@ namespace Dashboard.ServiceConfiguration
 
             services.AddSingleton(_ => new MqttService(configuration));
 
+            services.AddScoped<IAuthService, AuthService>();
+
             services.AddScoped<IRevenueService, RevenueService>();
 
             services.AddScoped<ISalesService, SalesService>();

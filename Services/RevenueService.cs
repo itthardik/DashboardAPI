@@ -2,6 +2,8 @@
 using Dashboard.Models.DTOs.Response;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Services.Interfaces;
+using Dashboard.Utility;
+using Microsoft.Extensions.Configuration;
 
 namespace Dashboard.Services
 {
@@ -10,7 +12,8 @@ namespace Dashboard.Services
     /// </summary>
     /// <param name="revenueRepository"></param>
     /// <param name="productRepository"></param>
-    public class RevenueService(IRevenueRepository revenueRepository, IProductRepository productRepository) : IRevenueService
+    /// <param name="configuration"></param>
+    public class RevenueService(IRevenueRepository revenueRepository, IProductRepository productRepository, IConfiguration configuration) : IRevenueService
     {
         private readonly IRevenueRepository _revenueRepository = revenueRepository;
         private readonly IProductRepository _productRepository = productRepository;
@@ -63,16 +66,12 @@ namespace Dashboard.Services
         /// <returns></returns>
         public List<RevenueSPResponse> GetRevenueStatsBasedOnDays(string days)
         {
-            var getDays = new Dictionary<string, int> {
-                    { "today", 0 },
-                    { "last3days", 3 },
-                    { "lastweek", 7 },
-                    { "lastmonth", 30 },
-                    { "last3months", 90 },
-                    { "last6months", 180 },
-                    { "lastyear", 360}};
+            var getDays = configuration.GetSection("DaysSettings").Get<Dictionary<string, int>>();
 
-            var result = _revenueRepository.GetRevenueStatsBasedOnDays(getDays[days]);
+            if (getDays == null || !getDays.TryGetValue(days, out int value))
+                throw new CustomException("Invalid period");
+
+            var result = _revenueRepository.GetRevenueStatsBasedOnDays(value);
 
             return result;
         }

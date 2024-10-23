@@ -3,8 +3,7 @@
 actor User
 
 User -> "React App (Frontend)" : Navigate to Overall Sales Statistics page
-"React App (Frontend)" -> "React App (Frontend)" : Set Default Date = Today (Year, Month, Day)
-"React App (Frontend)" -> "Backend (.NET Core API)" : Request Overall Sales Stats (Date = Today)
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request overall sales stats by category\nfor a configurable date (Date = Today)
 "Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetOrderItemsByDate, SelectedDate)
 "SQL Server (Database)" -> "Backend (.NET Core API)" : Return Sales Data by Date
 "Backend (.NET Core API)" -> "React App (Frontend)" : Send Sales Data (JSON Result)

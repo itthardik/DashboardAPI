@@ -1,4 +1,5 @@
-﻿using MQTTnet;
+﻿using Dashboard.Utility;
+using MQTTnet;
 using MQTTnet.Client;
 
 namespace Dashboard.Services
@@ -79,6 +80,7 @@ namespace Dashboard.Services
             }
             catch (Exception ex)
             {
+                ex.LogException();
                 Console.WriteLine($"Connection failed: {ex.Message}");
                 _isReconnecting = false;
             }

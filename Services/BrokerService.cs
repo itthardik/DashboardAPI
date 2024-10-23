@@ -140,7 +140,6 @@ namespace Dashboard.Services
             string error = await process.StandardError.ReadToEndAsync();
 
             process.WaitForExit();
-            Console.WriteLine(process.ExitCode);
 
             return new CommandResult
             {

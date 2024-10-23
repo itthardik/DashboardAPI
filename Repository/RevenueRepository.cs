@@ -3,6 +3,7 @@ using Dashboard.Models;
 using Dashboard.Models.DTOs.Response;
 using Dashboard.Repository.Interfaces;
 using Dashboard.Utility;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -37,7 +38,7 @@ namespace Dashboard.Repository
         /// <returns></returns>
         public List<RevenueSPResponse> GetRevenueStatsBasedOnDays(int days) {
             var result = _context.RevenueSPResponses
-            .FromSqlRaw("EXEC GetTop10RevenueAndProfit @DaysBack = {0}", days)
+            .FromSqlRaw("EXEC GetTop10RevenueAndProfit @DaysBack;", new SqlParameter("@DaysBack",days))
             .ToList();
 
             return result;

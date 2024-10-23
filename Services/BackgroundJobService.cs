@@ -84,6 +84,7 @@ namespace Dashboard.Services
             }
             catch (Exception ex)
             {
+                ex.LogException();
                 Console.WriteLine(ex.Message);
             }
         }
@@ -93,8 +94,14 @@ namespace Dashboard.Services
         /// </summary>
         public void UpdateAverageDailyUsageAndReorderPointForAllProducts()
         {
-            _context.Database.ExecuteSqlRaw("EXEC UpdateAverageDailyUsageAndReorderPoint");
-            return;
+            try
+            {
+                _context.Database.ExecuteSqlRaw("EXEC UpdateAverageDailyUsageAndReorderPoint");
+                return;
+            }
+            catch (Exception ex) {
+                ex.LogException();
+            }
         }
 
         /// <summary>
@@ -104,19 +111,26 @@ namespace Dashboard.Services
         /// <returns></returns>
         public async Task ProcessExcelAndPlaceOrders(string excelFilePath)
         {
-            using var workbook = new XLWorkbook(excelFilePath);
-            var worksheet = workbook.Worksheet(1);
-            var rowCount = worksheet.LastRowUsed().RowNumber();
-
-            for (int row = 2; row <= rowCount; row++)
+            try
             {
-                var productId = (int)worksheet.Cell(row, 1).GetDouble();
-                var quantity = (int)worksheet.Cell(row, 2).GetDouble();
-                await _orderService.PlaceOrder([ new() { ProductId = productId, Quantity = quantity } ]);
+                using var workbook = new XLWorkbook(excelFilePath);
+                var worksheet = workbook.Worksheet(1);
+                var rowCount = worksheet.LastRowUsed().RowNumber();
 
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    var productId = (int)worksheet.Cell(row, 1).GetDouble();
+                    var quantity = (int)worksheet.Cell(row, 2).GetDouble();
+                    await _orderService.PlaceOrder([new() { ProductId = productId, Quantity = quantity }]);
+
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
             }
-        }
+            
+            catch (Exception ex) {
+                ex.LogException();
+            }
+}
 
         /// <summary>
         /// Get Total Orders in Last 1 min
@@ -124,10 +138,17 @@ namespace Dashboard.Services
         /// <returns></returns>
         public async Task GetTotalOrderInLast60Sec()
         {
-            var result = _context.TotalSalesSPResponses.FromSqlRaw("Exec GetRecentOrderItems").ToList()[0];
+            try
+            {
+                var result = _context.TotalSalesSPResponses.FromSqlRaw("Exec GetRecentOrderItems").ToList()[0];
 
-            await _mqttService.PublishAsync("sales/overallSales", JsonConvert.SerializeObject(result));
-        }
+                await _mqttService.PublishAsync("sales/overallSales", JsonConvert.SerializeObject(result));
+            
+            }
+            catch (Exception ex) {
+                ex.LogException();
+            }
+}
 
     }
 }

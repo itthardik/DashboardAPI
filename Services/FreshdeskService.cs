@@ -50,7 +50,6 @@ namespace Dashboard.Services
 
             if (string.IsNullOrEmpty(query))
                 throw new CustomException("Invalid Query", 400);
-            Console.WriteLine($"search/tickets?query=\"{query}\"");
 
             HttpResponseMessage response = await _httpClient.GetAsync($"search/tickets?query=\"{query}\"");
 

@@ -2,8 +2,8 @@
 !theme mars
 actor User
 
-User -> "React App (Frontend)" : Navigate to Sales Statistics page (Default: Today)
-"React App (Frontend)" -> "Backend (.NET Core API)" : Request Sales Stats by Category
+User -> "React App (Frontend)" : Navigate to Sales Statistics page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request sales stats by category \nfor a configurable date (Default:Today)
 "Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetTotalSalesByCategory, DaysBack)
 "SQL Server (Database)" -> "Backend (.NET Core API)" : Return Sales Data by Category
 "Backend (.NET Core API)" -> "React App (Frontend)" : Send Sales Data (JSON Result)
