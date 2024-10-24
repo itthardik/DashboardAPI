@@ -1,5 +1,9 @@
 # E-Commerce Sales Dashboard
 
+[Frontend Repo](https://github.com/itthardik/Dashboard-Frontend)
+
+[Backend Repo](https://github.com/itthardik/DashboardAPI)
+
 ## Overview
 
 The **E-Commerce Sales Dashboard** is a comprehensive solution designed to provide real-time insights into sales performance, inventory management, revenue analysis, and customer support. The dashboard helps businesses make data-driven decisions, optimize operations, and streamline customer support processes.
