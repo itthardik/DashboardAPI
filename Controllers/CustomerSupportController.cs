@@ -3,6 +3,7 @@ using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -11,7 +12,7 @@ namespace Dashboard.Controllers
     /// </summary>
     [ApiController]
     [Route("api/customerSupport")]
-    public class CustomerSupport(IFreshdeskService freshdeskService) : Controller
+    public class CustomerSupportController(IFreshdeskService freshdeskService) : Controller
     {
         private readonly IFreshdeskService _freshdeskService = freshdeskService;
 
@@ -36,7 +37,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -60,7 +61,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -84,7 +85,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -107,7 +108,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 

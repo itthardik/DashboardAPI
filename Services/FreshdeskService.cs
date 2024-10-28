@@ -3,6 +3,7 @@ using Dashboard.Services.Interfaces;
 using Dashboard.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net;
 using System.Text;
 using System.Text.Json.Nodes;
 
@@ -230,7 +231,7 @@ namespace Dashboard.Services
                     averageResolutionTime.Seconds
                 }
             })
-            { StatusCode = 200 };
+            { StatusCode = (int)HttpStatusCode.OK };
         }
 
         /// <summary>
@@ -241,35 +242,189 @@ namespace Dashboard.Services
         {
 
             List<object> tickets1 =
-            [
-                new
-                {
-                    description = "Issue with product not functioning correctly",
-                    subject = "Product malfunction support",
-                    email = "john.doe@example.com",
-                    priority = 1, // Low priority
-                    status = 2,   // Open status
-                    cc_emails = new List<string> { "manager@example.com", "support_lead@example.com" }
-                },
-                new
-                {
-                    description = "Unable to access account",
-                    subject = "Login issue assistance",
-                    email = "jane.smith@example.com",
-                    priority = 2, // Medium priority
-                    status = 3,   // Pending status
-                    cc_emails = new List<string> { "techsupport@example.com" }
-                },
-                new
-                {
-                    description = "Request for product information",
-                    subject = "Product details inquiry",
-                    email = "michael.jordan@example.com",
-                    priority = 1, // Low priority
-                    status = 2,   // Open status
-                    cc_emails = new List<string> { "sales@example.com" }
-                }
-            ];
+[
+    new
+    {
+        description = "Issue with product delivery delay",
+        subject = "Delivery delay concern",
+        email = "alex.brown@example.com",
+        priority = 2, // Medium priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "logistics@example.com", "support@example.com" }
+    },
+    new
+    {
+        description = "Product color not as advertised",
+        subject = "Product color discrepancy",
+        email = "sarah.connor@example.com",
+        priority = 1, // Low priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "quality@example.com" }
+    },
+    new
+    {
+        description = "Cannot apply discount code",
+        subject = "Discount code application issue",
+        email = "chris.evans@example.com",
+        priority = 3, // High priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "sales@example.com", "support@example.com" }
+    },
+    new
+    {
+        description = "Received defective product",
+        subject = "Defective product replacement",
+        email = "emma.watson@example.com",
+        priority = 4, // Urgent priority
+        status = 1,   // Resolved status
+        cc_emails = new List<string> { "returns@example.com", "quality@example.com" }
+    },
+    new
+    {
+        description = "Request to update account email",
+        subject = "Account email update",
+        email = "james.bond@example.com",
+        priority = 1, // Low priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "techsupport@example.com" }
+    },
+    new
+    {
+        description = "Problem with refund processing",
+        subject = "Refund processing assistance",
+        email = "lucy.hale@example.com",
+        priority = 3, // High priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "finance@example.com", "support_lead@example.com" }
+    },
+    new
+    {
+        description = "Discount not applied at checkout",
+        subject = "Checkout discount issue",
+        email = "robert.pattinson@example.com",
+        priority = 2, // Medium priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "sales@example.com" }
+    },
+    new
+    {
+        description = "Request for product exchange",
+        subject = "Product exchange request",
+        email = "natalie.portman@example.com",
+        priority = 4, // Urgent priority
+        status = 1,   // Resolved status
+        cc_emails = new List<string> { "returns@example.com" }
+    },
+    new
+    {
+        description = "Billing discrepancy on last order",
+        subject = "Billing issue resolution",
+        email = "hugh.jackman@example.com",
+        priority = 3, // High priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "finance@example.com" }
+    },
+    new
+    {
+        description = "Trouble navigating mobile site",
+        subject = "Mobile site usability feedback",
+        email = "anna.kendrick@example.com",
+        priority = 1, // Low priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "ux@example.com" }
+    },
+    new
+    {
+        description = "Question regarding bulk order discount",
+        subject = "Bulk order discount inquiry",
+        email = "leonardo.dicaprio@example.com",
+        priority = 2, // Medium priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "sales@example.com" }
+    },
+    new
+    {
+        description = "Delay in response from customer support",
+        subject = "Customer support response delay",
+        email = "julia.roberts@example.com",
+        priority = 3, // High priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "support_lead@example.com" }
+    },
+    new
+    {
+        description = "Damaged item received in last order",
+        subject = "Damaged item report",
+        email = "will.smith@example.com",
+        priority = 4, // Urgent priority
+        status = 1,   // Resolved status
+        cc_emails = new List<string> { "quality@example.com", "returns@example.com" }
+    },
+    new
+    {
+        description = "Unable to reset account password",
+        subject = "Password reset issue",
+        email = "scarlett.johansson@example.com",
+        priority = 2, // Medium priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "techsupport@example.com" }
+    },
+    new
+    {
+        description = "Query about loyalty program benefits",
+        subject = "Loyalty program details",
+        email = "morgan.freeman@example.com",
+        priority = 1, // Low priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "customerloyalty@example.com" }
+    },
+    new
+    {
+        description = "Refund not credited for returned item",
+        subject = "Refund status inquiry",
+        email = "matt.damon@example.com",
+        priority = 3, // High priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "finance@example.com" }
+    },
+    new
+    {
+        description = "Trouble with app performance on iOS",
+        subject = "iOS app performance issue",
+        email = "emma.stone@example.com",
+        priority = 2, // Medium priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "mobiledev@example.com" }
+    },
+    new
+    {
+        description = "Incorrect item received in order",
+        subject = "Incorrect item received",
+        email = "benedict.cumberbatch@example.com",
+        priority = 4, // Urgent priority
+        status = 1,   // Resolved status
+        cc_emails = new List<string> { "returns@example.com" }
+    },
+    new
+    {
+        description = "Request for invoice correction",
+        subject = "Invoice correction request",
+        email = "amy.adams@example.com",
+        priority = 3, // High priority
+        status = 2,   // Open status
+        cc_emails = new List<string> { "finance@example.com" }
+    },
+    new
+    {
+        description = "Unable to track order shipment",
+        subject = "Order tracking issue",
+        email = "dwayne.johnson@example.com",
+        priority = 2, // Medium priority
+        status = 3,   // Pending status
+        cc_emails = new List<string> { "logistics@example.com" }
+    }
+];
+
 
             foreach (var ticket in tickets1)
             {

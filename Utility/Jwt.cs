@@ -26,7 +26,7 @@ namespace Dashboard.Utility
 
             var token = new JwtSecurityToken(
                 claims:identity.Claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(configuration["Jwt:ExpirationTime"])),
+                expires: DateTime.Now.AddMinutes(Convert.ToInt32(configuration["Jwt:ExpirationTime"])),
                 signingCredentials: creds
                 );
 

@@ -38,7 +38,7 @@ namespace Dashboard
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dashboard V1");
                 });
             }
-
+            
             app.UseCors("AllowReactApp");
             app.UseHttpsRedirection();
             app.UseAuthentication();

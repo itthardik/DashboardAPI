@@ -19,7 +19,7 @@
         {
             services.AddHttpClient<IFreshdeskService, FreshdeskService>(client =>
             {
-                client.BaseAddress = new Uri("https://hardikintimetec.freshdesk.com/api/v2/");
+                client.BaseAddress = new Uri("https://none3332.freshdesk.com/api/v2/");
 
                 var apiKey = configuration["FreshDesk:ApiKey"];
                 var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiKey}:X"));

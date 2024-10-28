@@ -4,6 +4,7 @@ using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -32,12 +33,12 @@ namespace Dashboard.Controllers
                 if (id != null)
                 {
                     var result = _revenueService.GetProductCostById(id ?? 0);
-                    return new JsonResult(new { data = result }) { StatusCode = 200 };
+                    return new JsonResult(new { data = result }) { StatusCode = (int)HttpStatusCode.OK };
                 }
                 else if (name != null)
                 {
                     var result = _revenueService.GetProductCostByName(name);
-                    return new JsonResult(new { data = result }) { StatusCode = 200 };
+                    return new JsonResult(new { data = result }) { StatusCode = (int)HttpStatusCode.OK };
                 }
                 throw new CustomException("Id or Name is required", 400);
             }
@@ -47,7 +48,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
         
@@ -67,7 +68,7 @@ namespace Dashboard.Controllers
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _revenueService.GetAllSearchValuesByPagination(pageNumber, pageSize);
 
-                return new JsonResult(res) { StatusCode = 200 };
+                return new JsonResult(res) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -75,7 +76,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -92,7 +93,7 @@ namespace Dashboard.Controllers
             {
                 var res = _revenueService.GetRevenueStatsBasedOnDays(days);
 
-                return new JsonResult(new { data = res }) { StatusCode = 200 };
+                return new JsonResult(new { data = res }) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -100,7 +101,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 

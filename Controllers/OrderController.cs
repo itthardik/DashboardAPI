@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Dashboard.Services.Interfaces;
 using Dashboard.Services;
 using Hangfire;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -36,7 +37,7 @@ namespace Dashboard.Controllers
                     throw new CustomException("Empty List", 404);
 
                 await _orderService.PlaceOrder(products);
-                return new JsonResult("Order Placed Successfully") { StatusCode = 200 };
+                return new JsonResult("Order Placed Successfully") { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -44,7 +45,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -58,11 +59,11 @@ namespace Dashboard.Controllers
             try
             {
                 _orderService.LiveOrders("Orders.xlsx");
-                return new JsonResult("Job has been enqueued.") { StatusCode = 200 };
+                return new JsonResult("Job has been enqueued.") { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
     }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealTimeComTest.Models.ViewModels.Request;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -24,7 +25,7 @@ namespace Dashboard.Controllers
             HttpOnly = true,  // Cookie not accessible via JavaScript
             Secure = true,    // Only sent over HTTPS
             SameSite = SameSiteMode.None, // Allow cross-site requests
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(configuration["Jwt:ExpirationTime"])) // Set cookie expiration
+            Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(configuration["Jwt:ExpirationTime"])) // Set cookie expiration
         };
 
         // Set options for the session token cookie
@@ -34,7 +35,7 @@ namespace Dashboard.Controllers
             HttpOnly = false,  // Accessible via JavaScript
             Secure = true,     // Only sent over HTTPS
             SameSite = SameSiteMode.None, // Allow cross-site requests
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(configuration["Jwt:ExpirationTime"])) // Set cookie expiration
+            Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(configuration["Jwt:ExpirationTime"])) // Set cookie expiration
         };
 
 
@@ -68,7 +69,7 @@ namespace Dashboard.Controllers
             catch (Exception ex)
             {
                 // Handle any general exceptions and return a 500 status code
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
 
         }
@@ -97,7 +98,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -140,7 +141,7 @@ namespace Dashboard.Controllers
             catch (Exception ex)
             {
                 // Handle any general exceptions and return a 500 status code
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
 
         }
@@ -179,7 +180,7 @@ namespace Dashboard.Controllers
             catch (Exception ex)
             {
                 // Handle any general exceptions and return a 500 status code
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
 
         }

@@ -61,7 +61,7 @@ namespace Dashboard.ServiceConfiguration
                 .AddPolicy("InventoryAccessPolicy", policy =>
                     policy.RequireRole("inventory", "admin"))
                 .AddPolicy("CustomerSupportAccessPolicy", policy =>
-                    policy.RequireRole("customerSupport", "admin"))
+                    policy.RequireRole("support", "admin"))
                 .AddPolicy("Inventory&RevenueAccessPolicy", policy =>
                     policy.RequireRole("inventory", "revenue", "admin"));
 

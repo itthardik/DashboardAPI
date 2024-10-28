@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using Dashboard.Services.Interfaces;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -37,7 +38,7 @@ namespace Dashboard.Controllers
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _inventoryService.GetInventoryByPagination(pageNumber, pageSize, filterKey);
-                return new JsonResult(res) { StatusCode = 200};
+                return new JsonResult(res) { StatusCode = (int)HttpStatusCode.OK};
             }
             catch (CustomException ex)
             {
@@ -45,7 +46,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
         
@@ -74,7 +75,7 @@ namespace Dashboard.Controllers
                     {
                         ReferenceHandler = ReferenceHandler.Preserve,
                     })
-                { StatusCode = 200 };
+                { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -82,7 +83,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
     }

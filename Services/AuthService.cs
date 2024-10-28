@@ -5,6 +5,7 @@ using Dashboard.Utility;
 using RealTimeComTest.Models;
 using RealTimeComTest.Models.ViewModels.Request;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -59,7 +60,7 @@ namespace Dashboard.Services
 
             // Check if the hashed passwords match
             if (hashedInputPassword != hashedPassword)
-                throw new CustomException("Invalid Password") { StatusCode = 401 };
+                throw new CustomException("Invalid Password") { StatusCode = (int) HttpStatusCode.Unauthorized };
 
             // Define claims (ID, username, role) for the user
             var claims = new[]
@@ -113,7 +114,6 @@ namespace Dashboard.Services
                 Email = requestUser.Username + "@hm.com",
                 Role = role
             });
-            _userRepository.Save();
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Dashboard.Services
                     TokenExpirationTime = user.TokenExpirationTime,
                     SessionToken = user.SessionToken!,
                 };
-                return new () { Token = token, LoginResponse = response };
+                return new () { Token = newToken, LoginResponse = response };
             }
             throw new CustomException("Invalid token", 400);
         }

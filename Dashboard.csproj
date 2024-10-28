@@ -34,6 +34,7 @@
     <Folder Include="Database\Migrations\SP\Update\" />
     <Folder Include="Database\Migrations\Tables\Delete\" />
     <Folder Include="Database\Migrations\Tables\Update\" />
+    <Folder Include="ExceptionLogs\" />
   </ItemGroup>
 
 </Project>

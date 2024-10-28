@@ -10,9 +10,20 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace Dashboard.Services
 {
+    /// <summary>
+    /// Alert service
+    /// </summary>
+    /// <param name="alertRepository"></param>
     public class AlertService( IAlertRepository alertRepository) :IAlertService
     {
         private readonly IAlertRepository _alertRepository = alertRepository;
+
+        /// <summary>
+        /// Get all alerts
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public PaginatedResponse<Alert> GetAllAlerts(int pageNumber, int pageSize)
         {
             var allAlerts = _alertRepository.GetAllAlerts();

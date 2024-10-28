@@ -3,6 +3,7 @@ using Dashboard.Utility;
 using Dashboard.Utility.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -28,7 +29,7 @@ namespace Dashboard.Controllers
             try
             {
                 var res = _salesService.GetSalesStatsByCategoryBasedOnDays(days);
-                return new JsonResult(new { data = res}) { StatusCode = 200 };
+                return new JsonResult(new { data = res}) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -36,7 +37,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -54,7 +55,7 @@ namespace Dashboard.Controllers
             try
             {
                 var res = _salesService.GetOverallSalesStatsBasedOnDays(year, month, day);
-                return new JsonResult(new { data = res }) { StatusCode = 200 };
+                return new JsonResult(new { data = res }) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -62,7 +63,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
         
@@ -81,7 +82,7 @@ namespace Dashboard.Controllers
                 //throw new NotImplementedException();
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _salesService.GetTopSellingProductsByPagination(pageNumber, pageSize);
-                return new JsonResult(res) { StatusCode = 200 };
+                return new JsonResult(res) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -89,7 +90,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
         
@@ -107,7 +108,7 @@ namespace Dashboard.Controllers
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _salesService.GetTopSellingCategoriesByPagination(pageNumber, pageSize);
-                return new JsonResult(res) { StatusCode = 200 };
+                return new JsonResult(res) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -115,7 +116,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
 
@@ -130,7 +131,7 @@ namespace Dashboard.Controllers
             try
             {
                 var res = _salesService.GetLast10MinSales();
-                return new JsonResult(new { data = res }) { StatusCode = 200 };
+                return new JsonResult(new { data = res }) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -138,7 +139,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
     }

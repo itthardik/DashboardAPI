@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Net;
 
 namespace Dashboard.Controllers
 {
@@ -32,7 +33,7 @@ namespace Dashboard.Controllers
             {
                 ValidationUtility.PageInfoValidator(pageNumber, pageSize);
                 var res = _alertService.GetAllAlerts(pageNumber, pageSize);
-                return new JsonResult(res, new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.IgnoreCycles }) { StatusCode = 200 };
+                return new JsonResult(res, new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.IgnoreCycles }) { StatusCode = (int)HttpStatusCode.OK };
             }
             catch (CustomException ex)
             {
@@ -40,7 +41,7 @@ namespace Dashboard.Controllers
             }
             catch (Exception ex)
             {
-                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = 500 };
+                ex.LogException(); return new JsonResult(ex.Message) { StatusCode = (int)HttpStatusCode.InternalServerError };
             }
         }
     }

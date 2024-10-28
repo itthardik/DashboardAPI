@@ -1,4 +1,6 @@
-﻿namespace Dashboard.Utility
+﻿using System.Net;
+
+namespace Dashboard.Utility
 {
     /// <summary>
     /// Custom Exception class
@@ -8,7 +10,7 @@
     /// </remarks>
     /// <param name="message"></param>
     /// <param name="statusCode"></param>
-    public class CustomException(string message, int statusCode = 200) : Exception(message)
+    public class CustomException(string message, int statusCode = (int)HttpStatusCode.OK) : Exception(message)
     {
         /// <summary>
         /// Status Code

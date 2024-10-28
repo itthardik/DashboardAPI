@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Net;
 
 namespace Dashboard.Repository
 {
@@ -28,9 +29,9 @@ namespace Dashboard.Repository
         /// <exception cref="CustomException"></exception>
         public IIncludableQueryable<Alert, Product> GetAllAlerts()
         {
-            var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderBy(alert => alert.AlertLevel).Include(a => a.Product);
+            var allAlerts = _context.Alerts.Where(alert => alert.Status == "Pending").OrderByDescending(alert => alert.AlertLevel).Include(a => a.Product);
             if (allAlerts.IsNullOrEmpty())
-                throw new CustomException("No Inventory Alerts found", 200);
+                throw new CustomException("No Inventory Alerts found", (int)HttpStatusCode.OK);
             return allAlerts;
         }
 

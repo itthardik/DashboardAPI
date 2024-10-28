@@ -1,0 +1,15 @@
+﻿@startuml
+!theme mars
+actor User as U
+participant "Frontend (Customer Support Page)" as FE
+participant "Backend (Customer Support Service)" as BE
+participant "Freshdesk API Server" as FAS
+
+U -> FE: Request to View Tickets (with Filters & Pagination)
+FE -> BE: Send Request with Pagination and Filters\n(pageNumber, pageSize, orderBy, orderType)
+BE -> FAS: Forward Query Parameters\n(page, per_page, order_by, order_type)
+FAS --> BE: Return Paginated and Filtered Ticket Data
+BE --> FE: Return Tickets Data
+FE -> U: Display Tickets (Paginated and Filtered)
+
+@enduml
