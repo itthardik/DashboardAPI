@@ -1,0 +1,29 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Revenue Analysis page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Product Cost Breakdown Data (Default: Product ID 1)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Query SQL Server for Product ID 1 Data
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Product ID 1 Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Product ID 1 Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Display pie chart for Product ID 1
+- Show detailed cost info for Product ID 1
+end note
+
+User -> "React App (Frontend)" : Search for specific product (by ID or name)
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Data for Specific Product
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Query SQL Server for Specific Product Data
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Specific Product Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Specific Product Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Highlight selected product in pie chart
+- Display detailed cost info for selected product
+end note
+
+@enduml

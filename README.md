@@ -4,6 +4,8 @@
 
 [Backend Repo](https://github.com/itthardik/DashboardAPI)
 
+[Unit Test Repo](https://github.com/itthardik/Dashboard-Unit-Test)
+
 ## Overview
 
 The **E-Commerce Sales Dashboard** is a comprehensive solution designed to provide real-time insights into sales performance, inventory management, revenue analysis, and customer support. The dashboard helps businesses make data-driven decisions, optimize operations, and streamline customer support processes.
@@ -67,6 +69,7 @@ This application features:
 - **Real-Time Communication**: MQTT, WebSocket, Mosquitto broker
 - **Authentication**: JSON Web Token (JWT), Session Token
 - **Third-Party Integrations**: Freshdesk API for customer support
+- **Testing**: xUnit, Moq (for unit testing)
 
 ---
 
@@ -143,6 +146,16 @@ Ensure you have the following installed on your system:
 - **Freshdesk API**: For managing customer support tickets.
 - **Mosquitto Broker**: Real-time communication using MQTT.
 - **Hangfire**: For background job management and task scheduling.
+
+---
+
+## Unit Testing
+
+Unit tests validate core functionalities using **xUnit** and **Moq** for mocking. Key modules like sales, revenue, and inventory are tested to ensure expected behavior.
+
+### Key Areas
+- **Service Layer**: Tests methods in `RevenueService`, `SalesService`, etc., verifying correct handling of inputs and outputs.
+- **Mocking**: Uses **Moq** for `IConfiguration` and repository interfaces (`IRevenueRepository`, `IProductRepository`) to isolate logic from external dependencies.
 
 ---
 

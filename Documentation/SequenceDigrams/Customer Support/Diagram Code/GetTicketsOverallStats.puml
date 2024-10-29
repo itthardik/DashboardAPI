@@ -1,0 +1,16 @@
+﻿@startuml
+!theme mars
+actor User as U
+participant "Customer Support Page (Frontend)" as FE
+participant "Customer Support Service (Backend)" as BE
+participant "Freshdesk API Server" as FAS
+
+U -> FE: Open Customer Support Page
+FE -> BE: Request Overall Ticket Stats (/api/customerSupport/getOverallStats)
+BE -> FAS: Fetch Ticket Stats (tickets?include=stats)
+FAS --> BE: Response with Raw Ticket Data (JSON)
+BE -> BE: Apply Business Logic to Ticket Stats
+BE --> FE: Return Processed Ticket Stats (JSON)
+FE -> U: Display Overall Ticket Stats
+
+@enduml

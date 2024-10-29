@@ -1,16 +1,5 @@
-
-//dotnet ef dbcontext scaffold "Name=ApiContext" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir DataContext --context ApiContext --force
-
-using Dashboard.DataContext;
-using Dashboard.Repository.Interfaces;
-using Dashboard.Repository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Dashboard.ServiceConfiguration;
 using Dashboard.Services;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.OpenApi.Models;
 
 namespace Dashboard
 {
@@ -22,97 +11,25 @@ namespace Dashboard
         /// <summary>
         /// Main Endpoint
         /// </summary>
-        /// <param name="args"></param>
-        /// <exception cref="InvalidOperationException"></exception>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            IConfiguration configuration = builder.Configuration;
 
-            // Add services to the container.
-            builder.Services.AddDbContext<ApiContext>(options =>
-                options.UseSqlServer(configuration["ConnectionStrings:ApiContext"] ));
-
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IRevenueRepository, RevenueRepository>();
-
-            builder.Services.AddTransient<BrokerService>();
-
+            builder.Services.AddDatabaseContexts(builder.Configuration);
+            builder.Services.AddRepositories();
+            builder.Services.AddAppServices(builder.Configuration);
+            builder.Services.AddHttpClients(builder.Configuration);
+            builder.Services.AddHangfireServices(builder.Configuration);
             builder.Services.AddControllers();
-
-            builder.Services.AddSignalR();
-            builder.Services.AddSingleton<MqttService>(serviceProvider =>
-            {
-                var hubContext = serviceProvider.GetRequiredService<IHubContext<MqttHub>>();
-                return new MqttService(hubContext, serviceProvider);
-            });
-
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dashboard API", Version = "v1" });
-
-                var xmlFile = "dashboard.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
-
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowReactApp",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod()
-                               .AllowCredentials();
-                    });
-            });
-
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Secret"] ?? throw new InvalidOperationException("JWT 'Secret' not found."))),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
-            };
-
-            options.Events = new JwtBearerEvents
-            {
-                OnMessageReceived = context =>
-                {
-                    var token = context.Request.Cookies["jwtToken"];
-                    if (!string.IsNullOrEmpty(token))
-                    {
-                        context.Token = token;
-                    }
-
-                    return Task.CompletedTask;
-                }
-            };
-            });
-            builder.Services.AddAuthorizationBuilder()
-                .AddPolicy("FullAccessPolicy", policy =>
-                    policy.RequireRole("admin"))
-                .AddPolicy("RevenueAccessPolicy", policy =>
-                    policy.RequireRole("revenue","admin")
-                    );
+            builder.Services.AddCustomSwagger();
+            builder.Services.AddCustomCors();
+            builder.Services.AddCustomAuth(builder.Configuration);
 
 
             var app = builder.Build();
 
-            app.UseCors("AllowReactApp");
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -121,25 +38,22 @@ namespace Dashboard
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dashboard V1");
                 });
             }
-
+            
+            app.UseCors("AllowReactApp");
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.MapHub<MqttHub>("/mqtthub");
+            app.UseCustomHangfireJobs();
+            app.MapControllers();
 
             var mqttService = app.Services.GetRequiredService<MqttService>();
-
             Task.Run(async () =>
             {
                 await mqttService.ConnectAsync();
             }).GetAwaiter().GetResult();
 
-
-            app.MapControllers();
-
             app.Run();
         }
     }
 }
+

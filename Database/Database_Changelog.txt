@@ -139,11 +139,100 @@
 -- Author: Hardik Sharma
 -- Date: 2024-09-14
 -- Description: This script creates the `GetTop10RevenueAndProfit` stored procedure that retrieves the top 10 product categories based on revenue and profit within a specified number of days.
--- Status: Pending
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID:  TKT-17
+-- Script Name: 2024-09-17__TKT-17__Update__AddAvgDailyUsageAndRenameThresholdValue.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-17
+-- Description: This script adds a new column `averageDailyUsage` and renames the existing `thresholdValue` column to `reorderPoint` in the `Inventory` table.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID:  TKT-18
+-- Script Name: 2024-09-17__TKT-18__UpdateProductAverageDailyUsageAndReorderPoint.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-17
+-- Description: This script updates the `averageDailyUsage` column in the `Product` table based on the count of `OrderItem` entries from the past 90 days.
+--              It also updates the `reorderPoint` based on the `averageDailyUsage` with an added safety stock of 10.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID:  TKT-19
+-- Script Name: 2024-09-21__TKT-19__CreateAlertTable.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-21
+-- Description: This script creates the `Alert` table with columns for ID, product ID, alert level, notification timestamp, and status.
+--              The `status` column has two possible values: 'Pending' and 'Resolved'.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-20
+-- Script Name: 2024-09-23__TKT-20__Create__UpdateAverageDailyUsageAndReorderPoint.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-23
+-- Description: This migration creates a stored procedure to update the average daily usage and reorder point for all products.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-21
+-- Script Name: 2024-09-24__TKT-21__Create__GetTotalSalesByCategory.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve total sales quantities for each product category for today.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-22
+-- Script Name: 2024-09-24__TKT-22__Create__GetOrderItemsByDate.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve order items for a specified date.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-23
+-- Script Name: 2024-09-24__TKT-23__Create__GetRecentOrderItems.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-24
+-- Description: This migration creates a stored procedure to retrieve the total quantity of order items created in the last 5 seconds.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-24
+-- Script Name: 2024-09-26__TKT-24__Create__GetTopSellingProducts.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-26
+-- Description: This migration creates a stored procedure to retrieve the total sales of each product, ordered by total sales in descending order.
+-- Status: Applied
+
+--------------------------------------------------------------------------------
+
+-- Migration ID: TKT-25
+-- Script Name: 2024-09-26__TKT-25__Create__GetCategorySalesSummary.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-26
+-- Description: This migration creates a stored procedure to retrieve the total sales for each category, ordered by total sales in descending order.
+-- Status: Applied
 
 --------------------------------------------------------------------------------
 
 
+-- Migration ID: TKT-26
+-- Script Name: 2024-09-27__TKT-26__Create__GetLast10MinutesOrderItems.sql
+-- Author: Hardik Sharma
+-- Date: 2024-09-27
+-- Description: This migration creates a stored procedure to retrieve the total sales for the last 10 minutes, grouped by each minute interval.
+-- Status: Applied
 
 ----------------use this template and place migration changes above-------------
 

@@ -1,0 +1,23 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Click on Revenue link
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Revenue By Categories Data (Default: Today)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute SP (Today)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Today's Revenue Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Today's Revenue Data
+
+User -> "React App (Frontend)" : Select Timeframe (e.g., Last Month)
+"React App (Frontend)" -> "Backend (.NET Core API)" : Fetch Data for Selected Timeframe
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute SP (Selected Timeframe)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Timeframe Data
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Timeframe Data
+
+note right of "React App (Frontend)"
+UI updates:
+- Update stacked bar chart
+- Reflect selected timeframe data
+end note
+
+@enduml

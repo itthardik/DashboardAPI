@@ -1,0 +1,31 @@
+@startuml
+!theme mars
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+  RoundCorner 15
+}
+
+rectangle "React App (Frontend)" as Frontend {
+  rectangle "WebSocket & MQTT Client" as FrontendMQTT
+}
+
+rectangle ".NET Core API (Backend)" as Backend {
+  rectangle "JWT Authentication\n(User Roles)" as JWTAuth
+  rectangle "SQL Server\n(Database)" as SQLServer
+  rectangle "MQTT Client" as BackendMQTT
+}
+
+rectangle "Mosquitto MQTT Broker" as MQTTBroker
+
+rectangle "Freshdesk API\n(Customer Support)" as FreshdeskAPI
+rectangle "Email Service" as EmailService
+
+FrontendMQTT --> MQTTBroker : MQTT Connection via WebSockets
+BackendMQTT --> MQTTBroker : MQTT Connection via WebSockets
+Frontend --> Backend : API Calls
+Backend --> SQLServer : Data Access
+Backend --> FreshdeskAPI : Ticket Data
+Backend --> EmailService : Req to Forward Email
+Backend --> MQTTBroker : Pub/Sub Messaging
+@enduml

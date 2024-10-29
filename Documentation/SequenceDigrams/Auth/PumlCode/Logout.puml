@@ -1,0 +1,33 @@
+﻿@startuml
+actor User
+
+participant Frontend
+participant "Backend Server" as Backend
+participant "MQTT Client (Backend)" as MQTT_Backend
+participant "Mosquitto Broker" as Broker
+participant "MQTT Client (Frontend)" as MQTT_Frontend
+
+== Logout request ==
+User -> Frontend: Send logout request
+Frontend -> Backend: Send logout request\n(JWT in headers)
+Backend -> Backend: Validate JWT
+
+alt JWT valid
+    Backend -> MQTT_Backend: Send disable user command to broker
+
+    MQTT_Backend -> Broker: Disable user (disconnect)
+    Broker -> MQTT_Frontend: Disconnect user (session terminated)
+
+    alt Disable user succeeds
+        Backend -> Frontend: Remove JWT and session token
+        Frontend -> User: Notify successful logout
+    else Disable user fails
+        Backend -> Frontend: Send error message (Logout failed)
+        Frontend -> User: Notify logout failure
+    end
+else JWT invalid
+    Backend -> Frontend: Send error message (Invalid JWT)
+    Frontend -> User: Notify logout failure
+end
+
+@enduml

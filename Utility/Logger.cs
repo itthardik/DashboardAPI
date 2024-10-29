@@ -6,27 +6,34 @@
         public static class Logger
         {
         
-            private static readonly string logFilePath = "exception_log.txt";
             /// <summary>
             /// Log Exception into LogFile
             /// </summary>
             /// <param name="ex"></param>
-            public static void LogException(Exception ex)
+            public static void LogException(this Exception ex )
             {
                 try
                 {
-                //filter
+                    var TodayDate = DateTime.Now;
+                    var TodayForamtedDate=TodayDate.Year + "_" + TodayDate.Month + "_" +TodayDate.Day;
+                    string logFilePath = $"C:/Users/hardik.sharma/source/repos/DashboardLogs/ExceptionLogs/{TodayForamtedDate}_exception_log.txt";
+                    //filter
                     if (ex.GetType() == typeof(CustomException)) {
                         return;
                     }
 
-                using StreamWriter writer = new(logFilePath, true);
-                writer.WriteLine("------------------------------------------------");
-                writer.WriteLine($"Date: {DateTime.Now}");
-                writer.WriteLine($"Message: {ex.Message}");
-                writer.WriteLine($"StackTrace: {ex.StackTrace}");
-                writer.WriteLine("------------------------------------------------");
-            }
+                    using StreamWriter Writer = new(logFilePath, true);
+                    Writer.WriteLine("------------------------------------------------");
+                    Writer.WriteLine($"Date: {DateTime.Now}");
+                    Writer.WriteLine($"Message: {ex.Message}");
+                    Writer.WriteLine($"StackTrace: {ex.StackTrace}");
+                    if (ex.InnerException != null)
+                    {
+                        Writer.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                        Writer.WriteLine($"Inner StackTrace: {ex.InnerException.StackTrace}");
+                    }
+                    Writer.WriteLine("------------------------------------------------");
+                }
                 catch (Exception loggingEx)
                 {
                     Console.WriteLine($"Failed to log exception: {loggingEx.Message}");

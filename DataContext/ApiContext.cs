@@ -5,7 +5,7 @@ using Dashboard.Models.DTOs.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dashboard.DataContext;
-
+#pragma warning disable 1591
 public partial class ApiContext : DbContext
 {
     public ApiContext()
@@ -16,7 +16,9 @@ public partial class ApiContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<RevenueSPResponse> RevenueSPResponses { get; set; }
+
+    public virtual DbSet<Alert> Alerts { get; set; }
+
     public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<CustomerSearch> CustomerSearches { get; set; }
@@ -36,11 +38,30 @@ public partial class ApiContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<RevenueSPResponse>(entity =>
+        modelBuilder.Entity<Alert>(entity =>
         {
-            entity.HasNoKey();
-            entity.ToView(null); // Treats this entity as a query only
+            entity.HasKey(e => e.Id).HasName("PK__Alert__3213E83F57BAE375");
+
+            entity.ToTable("Alert");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AlertLevel).HasColumnName("alert_level");
+            entity.Property(e => e.NotifiedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("notified_at");
+            entity.Property(e => e.ProductId).HasColumnName("product_id");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Pending")
+                .HasColumnName("status");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.Alerts)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Alert__product_i__787EE5A0");
         });
+
         modelBuilder.Entity<Category>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Category__3213E83FC7F3D8A5");
@@ -147,6 +168,9 @@ public partial class ApiContext : DbContext
             entity.ToTable("Product");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AverageDailyUsage)
+                .HasColumnType("decimal(10, 5)")
+                .HasColumnName("averageDailyUsage");
             entity.Property(e => e.CategoryId).HasColumnName("categoryId");
             entity.Property(e => e.CostPrice)
                 .HasColumnType("decimal(10, 2)")
@@ -167,6 +191,9 @@ public partial class ApiContext : DbContext
                 .HasComputedColumnSql("((([sellingPrice]-[costPrice])-[shippingCost])-[discount])", true)
                 .HasColumnType("decimal(13, 2)")
                 .HasColumnName("netProfit");
+            entity.Property(e => e.ReorderPoint)
+                .HasDefaultValue(0)
+                .HasColumnName("reorderPoint");
             entity.Property(e => e.SellingPrice)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("sellingPrice");
@@ -175,9 +202,6 @@ public partial class ApiContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("shippingCost");
             entity.Property(e => e.SupplierId).HasColumnName("supplierId");
-            entity.Property(e => e.ThresholdValue)
-                .HasDefaultValue(0)
-                .HasColumnName("thresholdValue");
             entity.Property(e => e.UpdatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
@@ -252,5 +276,5 @@ public partial class ApiContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    static partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

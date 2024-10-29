@@ -1,0 +1,25 @@
+﻿@startuml
+!theme mars
+actor User
+
+User -> "React App (Frontend)" : Navigate to Top Selling Categories page
+"React App (Frontend)" -> "Backend (.NET Core API)" : Request Top Selling Categories (Page Number, Page Size)
+"Backend (.NET Core API)" -> "SQL Server (Database)" : Execute Stored Procedure (GetCategorySalesSummary)
+"SQL Server (Database)" -> "Backend (.NET Core API)" : Return Top Selling Categories Data
+
+alt No Categories Found
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Throw CustomException("No Search Values found", 404)
+else Categories Found
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Calculate Max Pages
+    "Backend (.NET Core API)" -> "Backend (.NET Core API)" : Paginate Results
+end
+
+"Backend (.NET Core API)" -> "React App (Frontend)" : Send Paginated Data (Max Pages, Top Selling Categories)
+
+note right of "React App (Frontend)"
+UI updates:
+- Display top selling categories for the current page
+- Show pagination information (total pages)
+end note
+
+@enduml

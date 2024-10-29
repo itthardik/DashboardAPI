@@ -1,16 +1,16 @@
-﻿using MQTTnet;
+﻿using Dashboard.Utility;
+using MQTTnet;
 using MQTTnet.Client;
-using Microsoft.AspNetCore.SignalR;
-using System.Text;
 
 namespace Dashboard.Services
 {
-
+    /// <summary>
+    /// Mqtt Service
+    /// </summary>
     public class MqttService
     {
         private readonly IMqttClient _mqttClient;
-        private readonly IHubContext<MqttHub> _hubContext;
-        //private readonly IServiceProvider _serviceProvider;
+        private readonly IConfiguration _configuration;
         private readonly Timer _reconnectTimer;
         private bool _isReconnecting;
         private async void CheckConnectionStatus(object state)
@@ -23,21 +23,21 @@ namespace Dashboard.Services
             }
         }
 
-        public MqttService(IHubContext<MqttHub> hubContext, IServiceProvider serviceProvider)
+        /// <summary>
+        /// mqtt service constructor
+        /// </summary>
+        public MqttService(IConfiguration configuration)
         {
             var factory = new MqttFactory();
             _mqttClient = factory.CreateMqttClient();
-            _hubContext = hubContext;
-            //_serviceProvider = serviceProvider;
-            //_apiContext = _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ApiContext>();
 
             _mqttClient.ConnectedAsync += OnConnectedAsync;
             _mqttClient.DisconnectedAsync += OnDisconnectedAsync;
-            _mqttClient.ApplicationMessageReceivedAsync += OnApplicationMessageReceivedAsync;
 
-            _reconnectTimer = new Timer(CheckConnectionStatus, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
+            _configuration = configuration;
+
+            _reconnectTimer = new Timer(CheckConnectionStatus!, null, Timeout.Infinite, (int)TimeSpan.FromSeconds(10).TotalMilliseconds);
         }
-
 
         private Task OnConnectedAsync(MqttClientConnectedEventArgs e)
         {
@@ -53,17 +53,11 @@ namespace Dashboard.Services
             _reconnectTimer.Change(0, (int)TimeSpan.FromMinutes(1).TotalMilliseconds);
             return Task.CompletedTask;
         }
-
-        private async Task OnApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs e)
-        {
-            var payloadArray = e.ApplicationMessage.PayloadSegment.ToArray();
-
-            var payload = Encoding.UTF8.GetString(payloadArray);
-
-
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", e.ApplicationMessage.Topic, payload);
-        }
     
+        /// <summary>
+        /// Connect async with admin
+        /// </summary>
+        /// <returns></returns>
         public async Task ConnectAsync()
         {
 
@@ -71,12 +65,11 @@ namespace Dashboard.Services
             {
                 var mqttOptions = new MqttClientOptionsBuilder()
                     .WithClientId("DotNetClient")
-                    .WithCredentials("admin", "admin")
+                    .WithCredentials(_configuration["DotNetMqttClient:Username"], _configuration["DotNetMqttClient:Password"])
                     .WithWebSocketServer(options =>
                     {
-                        options.WithUri("ws://127.0.0.1:9001");
+                        options.WithUri(_configuration["DotNetMqttClient:ConnectionUri"]);
                     })
-                    //.WithTcpServer("localhost")
                     .WithCleanSession(true)
                     .Build();
                 var result = await _mqttClient.ConnectAsync(mqttOptions, CancellationToken.None);
@@ -87,17 +80,29 @@ namespace Dashboard.Services
             }
             catch (Exception ex)
             {
+                ex.LogException();
                 Console.WriteLine($"Connection failed: {ex.Message}");
                 _isReconnecting = false;
             }
         }
 
+        /// <summary>
+        /// sub
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <returns></returns>
         public async Task SubscribeAsync(string topic)
         {
             await _mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(topic).Build());
             
         }
 
+        /// <summary>
+        /// pub
+        /// </summary>
+        /// <param name="topic"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task PublishAsync(string topic, string message)
         {
             var mqttMessage = new MqttApplicationMessageBuilder()

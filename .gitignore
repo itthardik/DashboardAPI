@@ -1,0 +1,39 @@
+﻿# Visual Studio specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+**/project.lock.json
+**/project.assets.json
+
+# ASP.NET Core app settings files
+appsettings.json
+appsettings.*.json
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider settings
+.idea/
+
+# User-specific files
+*.rsuser
+*.sln.ide
+
+# Logs
+*.log
